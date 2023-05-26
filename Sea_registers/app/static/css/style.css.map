@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"style.css"}
+{"version":3,"sourceRoot":"","sources":["../scss/main/_footer.scss","../scss/base/_vars.scss"],"names":[],"mappings":"AAAA;EACI,kBCCI;EDAJ,OCDG;EDEH;EACA","file":"style.css"}
