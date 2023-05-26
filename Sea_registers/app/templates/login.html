@@ -1,2 +1,16 @@
 {% extends 'base.html' %}
 
+{% block body %}
+    <form method="post"> {% csrf_token %}
+        <h1>Iniciar sesion</h1>
+        <ul>
+            {{form.as_ul}}
+        </ul>
+        <button type="submit"> 
+            Iniciar sesion
+        </button>
+        <nav>
+        <span>¿No tenes sesion?</span> <a href="#">Registrarse</a>
+        </nav>
+    </form>
+{% endblock body %}
