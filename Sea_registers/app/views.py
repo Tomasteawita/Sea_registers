@@ -36,11 +36,11 @@ class UpdatePost(CreateView):
     template_name = 'edit_post.html'
     fields = ['title','description','image','category','avatar'] 
 """
-"""class SingUp(CreateView):
+class SingUp(CreateView):
     form_class = SingUpForm
     success_url = '/'
     template_name = 'singup.html'
-"""
+
 class AdminLoginView(LoginView):
     template_name = 'login.html'
     

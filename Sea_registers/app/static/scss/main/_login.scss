@@ -1,0 +1,38 @@
+.login{
+    margin: 72px auto;
+    @include grid(1fr,1fr);
+    justify-items: center;
+    align-items: center;
+    section{
+        width: 375px;
+        @include flexbox(column,space-between,center);
+        div{
+            @include flexbox(row,start,center);
+            img{
+                width: 30%;
+                margin-right: 16px;
+            }
+            h1{
+                font-size: 1.6rem;
+            }
+            margin-bottom: 32px;
+        }
+        form{
+            width: 375px;
+            padding: 24px 0px;
+            min-height: 389px;
+            font-size: 1rem;
+            //Corregir esto a la brevedad, o por lo menos hacerlo en español
+            .helptext{
+                display: none;
+            }
+            a{
+                text-decoration: none;
+                color: $purple;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

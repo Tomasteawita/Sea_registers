@@ -1,7 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  border: 1px solid #131114;
+  border-radius: 8px !important;
+  background-color: transparent;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid #131114;
+  border-radius: 24px;
+  box-shadow: 2px 3px 6px 1px rgba(19, 17, 20, 0.21);
+  -webkit-box-shadow: 2px 3px 6px 1px rgba(19, 17, 20, 0.21);
+  -moz-box-shadow: 2px 3px 6px 1px rgba(19, 17, 20, 0.21);
+}
+.login-form > ul {
+  padding: 0;
+}
+.login-form > ul li {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+.login-form > ul li label {
+  margin-bottom: 4px;
+}
+.login-form > ul li input {
+  border: 1px solid #131114;
+  border-radius: 24px;
+  background-color: #E7E7E7;
+  padding: 4px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  background-color: #F6F6F6;
+}
+
+.login {
+  margin: 72px auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.login section {
+  width: 375px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.login section div {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.login section div img {
+  width: 30%;
+  margin-right: 16px;
+}
+.login section div h1 {
+  font-size: 1.6rem;
+}
+.login section form {
+  width: 375px;
+  padding: 24px 0px;
+  min-height: 389px;
+  font-size: 1rem;
+}
+.login section form .helptext {
+  display: none;
+}
+.login section form a {
+  text-decoration: none;
+  color: #8357BB;
+}
+.login section form a:hover {
+  text-decoration: underline;
+}
+
 footer {
   background-color: #8357BB;
   color: #131114;
-  height: 400px;
+  height: 200px;
   width: 100%;
 }
 
