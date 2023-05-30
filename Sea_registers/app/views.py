@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import * 
 from .models import *
+from .register import Register
 from django.views.generic import ListView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView,UpdateView
 from django.contrib.auth.views import LoginView, LogoutView
@@ -9,7 +10,14 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 
+def calculator(request):
+    return render(request,'calculator.html')
 
+def inicialization_params_calculator(request, id_comission):
+    students = Student.objects.filter(comission_id = id_comission)
+    register = Register(request)
+    register.set_students(students)
+    return redirect('calculator')
 """def login(request):
     
     context = None
