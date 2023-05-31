@@ -95,11 +95,34 @@ body {
   text-decoration: underline;
 }
 
-footer {
+header {
+  width: 100vw;
   background-color: #8357BB;
-  color: #131114;
-  height: 200px;
-  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0px 64px;
+}
+header img {
+  width: 40px;
+  margin-right: 12px;
+}
+header ul li.nav-item a.nav-link {
+  color: #050307;
+  transition: all 0.3s;
+}
+header ul li.nav-item a.nav-link:hover {
+  color: #2b1a3d;
+}
+header ul li.nav-item a.nav-link.active {
+  color: #050307;
+  background-color: #F6F6F6;
+}
+header ul li.nav-item a.nav-link.active:hover {
+  background-color: white;
 }
 
-/*# sourceMappingURL=Style.css.map */
+footer img {
+  width: 64px;
+}
+
+/*# sourceMappingURL=style.css.map */

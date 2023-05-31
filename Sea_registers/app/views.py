@@ -10,6 +10,10 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 
+def index(request):
+    
+    return render(request,'index.html')
+
 def calculator(request):
     return render(request,'calculator.html')
 
@@ -18,11 +22,7 @@ def inicialization_params_calculator(request, id_comission):
     register = Register(request)
     register.set_students(students)
     return redirect('calculator')
-"""def login(request):
-    
-    context = None
-    return render(request, 'login.html', {'context': context })
-"""
+
 """class Index(LoginRequiredMixin,ListView):
     model = Post
     template_name = 'index.html'
