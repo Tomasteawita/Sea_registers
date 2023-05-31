@@ -1,0 +1,29 @@
+header{
+    width: 100vw;
+    background-color: $purple;
+    margin-right: 0;
+    margin-left: 0;
+    padding:0px 64px ;
+    img{
+        width: 40px;
+        margin-right: 12px;
+    }
+    ul{
+        li.nav-item{
+            a.nav-link{
+                color: $darkLinks;
+                transition: all .3s;
+                &:hover{
+                    color: lighten($darkLinks, 15%);
+                }
+            }
+            a.nav-link.active{
+                color: $darkLinks;
+                background-color: $background;
+                &:hover{
+                    background-color: lighten($background, 15%);
+                }
+            }
+        }
+    }
+}
