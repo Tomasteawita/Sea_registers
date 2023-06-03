@@ -5,7 +5,7 @@ class Teacher(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     name = models.CharField(max_length = 50)
     phone = models.CharField(max_length = 50) 
-    
+    image = models.ImageField(upload_to = 'perfil_image',null = True,blank = True)
     def __str__(self) -> str:
         return  f'{super().__str__()}' 
 

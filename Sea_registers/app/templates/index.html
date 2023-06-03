@@ -1,9 +1,34 @@
-{% extends 'main.html' %}
+{% extends 'base/main.html' %}
 {% block main %}
 
 <main>
     <section>
-        
+        <div>
+            <span>{{request.user.username}}</span>
+            {% if teacher %}
+                <img src={{teacher.perfil_image.ur}}>
+            {% endif %}
+        </div>
+    </section>
+    <section class="commissions">
+        <h2>Comisiones</h2>
+        <div>
+            {% if commissions %}
+                {% for commission in commissions %}
+                    <article>
+                        <strong>title grade</strong>
+                        <ul>
+                            <li>first primarys alumns</li>
+                            <li>first primarys alumns</li>
+                            <li>first primarys alumns</li>
+                            <li>first primarys alumns</li>
+                            <li>first primarys alumns</li>
+                        </ul>
+                    </article>
+                {% endfor %}
+            
+            {% endif %}
+        </div>
     </section>
 </main>
 

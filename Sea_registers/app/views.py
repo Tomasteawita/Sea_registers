@@ -5,14 +5,30 @@ from .register import Register
 from django.views.generic import ListView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView,UpdateView
 from django.contrib.auth.views import LoginView, LogoutView
-#from django.contrib.auth.decorators import login_required
-#from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
+@login_required
 def index(request):
     
-    return render(request,'index.html')
+    try:
+        teacher = Teacher.objects.get(user = request.user)
+    except:
+        teacher = False
+        commission = False
+    else:
+        try:
+            commission = Commission.objects.get(teacher_id = teacher.id)
+        except:
+            commission = False
+    finally:
+        context = {
+            'teacher' : teacher,
+            'commission' : commission 
+        }        
+    
+    return render(request, 'index.html', context = context)
 
 def calculator(request):
     return render(request,'calculator.html')
@@ -47,10 +63,10 @@ class UpdatePost(CreateView):
 class SingUp(CreateView):
     form_class = SingUpForm
     success_url = '/'
-    template_name = 'singup.html'
+    template_name = 'login/singup.html'
 
 class AdminLoginView(LoginView):
-    template_name = 'login.html'
+    template_name = 'login/login.html'
     
 """class AdminLogoutView(LogoutView):
     template_name = 'logout.html'"""
