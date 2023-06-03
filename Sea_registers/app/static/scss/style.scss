@@ -13,6 +13,7 @@ ul{
 body{
     background-color: $background
 }
+@import 'main/index/index';
 @import 'main/login';
 @import 'main/header';
 @import 'main/footer';

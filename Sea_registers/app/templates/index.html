@@ -1,7 +1,7 @@
 {% extends 'base/main.html' %}
 {% block main %}
 
-<main>
+<main class="indexMain">
     <section>
         <div>
             <span>{{request.user.username}}</span>
@@ -11,12 +11,17 @@
         </div>
     </section>
     <section class="commissions">
-        <h2>Comisiones</h2>
+        {% if commissions %}
+            <h2>Comisiones</h2>
+        {% else %}
+            <h2>Agrega comisiones para poder empezar a calcular</h2>
+        {% endif %}
+        <hr>
         <div>
             {% if commissions %}
                 {% for commission in commissions %}
                     <article>
-                        <strong>title grade</strong>
+                        <strong>{{commission.name}}</strong>
                         <ul>
                             <li>first primarys alumns</li>
                             <li>first primarys alumns</li>
@@ -26,7 +31,15 @@
                         </ul>
                     </article>
                 {% endfor %}
-            
+                <article class="addCommission">
+                    <p>No hay comisiones</p>
+                    <button type="button"><i class="bi bi-plus-circle-fill"></i></button>        
+                </article>
+            {% else %}
+                <article class="addCommission">
+                    <p>No hay comisiones</p>
+                    <button type="button"><i class="bi bi-plus-circle-fill"></i></button>        
+                </article>
             {% endif %}
         </div>
     </section>

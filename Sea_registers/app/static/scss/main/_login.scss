@@ -1,6 +1,6 @@
 .login{
     margin: 72px auto;
-    @include grid(1fr,1fr);
+    @include grid(0,0,1fr,1fr);
     justify-items: center;
     align-items: center;
     section{

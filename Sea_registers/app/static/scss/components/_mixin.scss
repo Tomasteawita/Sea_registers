@@ -1,7 +1,17 @@
-@mixin grid($rows,$columns){
+@mixin grid($autoRows,$autoColumns,$rows,$columns){
     display: grid;
-    grid-template-columns:$columns ;
-    grid-template-rows:$rows;
+    @if $autoRows == 1{
+        grid-auto-rows: $rows;
+    }@else{
+        grid-template-rows:$rows;
+    }
+    @if $autoColumns == 1{
+        grid-auto-columns: $columns;    
+    }@else{
+        grid-template-columns:$columns ;
+    }
+    
+    
 }
 @mixin flexbox($direction,$justify,$align){
     display: flex;

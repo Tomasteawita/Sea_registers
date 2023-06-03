@@ -49,11 +49,44 @@ body {
   background-color: #F6F6F6;
 }
 
+.indexMain {
+  min-height: 600px;
+}
+.indexMain section {
+  margin: 32px 64px;
+}
+.indexMain section:first-child {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.indexMain section:first-child div {
+  display: inline-block;
+}
+.indexMain section.commissions h2 {
+  text-align: center;
+}
+.indexMain section.commissions div {
+  display: grid;
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.indexMain section.commissions div article.addCommission button {
+  background-color: #8357BB;
+  color: #F6F6F6;
+  border: none;
+  padding: 12px;
+  font-size: 42px;
+}
+
 .login {
   margin: 72px auto;
   display: grid;
-  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
   justify-items: center;
   align-items: center;
 }
