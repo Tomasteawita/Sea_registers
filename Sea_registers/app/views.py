@@ -1,4 +1,5 @@
-from django.shortcuts import render,redirect
+from typing import Any
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from .forms import * 
 from .models import *
 from .register import Register
@@ -9,17 +10,18 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-@login_required
+#@login_required
 def index(request):
     
     try:
-        teacher = Teacher.objects.get(user = request.user)
+        teacher = Teacher.objects.get(user_id = request.user.id)
     except:
+        print('NO SE PUDO TRAER A LA PROFE')
         teacher = False
         commission = False
     else:
         try:
-            commission = Commission.objects.get(teacher_id = teacher.id)
+            commission = Commission.objects.filter(teacher_id = teacher.id)
         except:
             commission = False
     finally:
@@ -39,10 +41,21 @@ def inicialization_params_calculator(request, id_comission):
     register.set_students(students)
     return redirect('calculator')
 
-"""class Index(LoginRequiredMixin,ListView):
-    model = Post
-    template_name = 'index.html'
+class Index(ListView):
     
+    template_name = 'indexClass.html'
+    
+    def get_queryset(self):
+        user_id = 2
+        teacher = get_object_or_404(Teacher, user_id = user_id)
+        commission = get_list_or_404( Commission,teacher_id = teacher.id)
+        queryset = {
+            'commission' : commission
+            }
+        return queryset
+    
+    
+"""    
 class delete_post(DeleteView):
     model = Post
     success_url = '/'
@@ -68,5 +81,5 @@ class SingUp(CreateView):
 class AdminLoginView(LoginView):
     template_name = 'login/login.html'
     
-"""class AdminLogoutView(LogoutView):
-    template_name = 'logout.html'"""
+class AdminLogoutView(LogoutView):
+    template_name = 'login/logout.html'

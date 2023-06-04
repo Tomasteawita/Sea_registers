@@ -6,13 +6,13 @@ class Teacher(models.Model):
     name = models.CharField(max_length = 50)
     phone = models.CharField(max_length = 12) 
     image = models.ImageField(upload_to = 'perfil_image',null = True,blank = True)
-    def __str__(self) -> str:
-        return  f'{super().__str__()}' 
+    def __str__(self):
+        return  f'{self.name}' 
 
 class School(models.Model):
     name = models.CharField(max_length = 150)
-    def __str__(self) -> str:
-        return super().__str__()
+    def __str__(self):
+        return f'Escuela: {self.name}'
 
 class Commission(models.Model):
     name = models.CharField(max_length = 3)
@@ -22,6 +22,9 @@ class Commission(models.Model):
     def get_school(self, school_template_id):
         school = School.objects.get(id = school_template_id)
         return f'{school}'
+    
+    def __str__(self):
+        return f'{self.name}'
         
 class Student(models.Model):
     name = models.CharField(max_length = 150)
