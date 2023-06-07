@@ -1,4 +1,5 @@
 from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from .forms import * 
 from .models import *
@@ -19,6 +20,18 @@ def inicialization_params_calculator(request, id_comission):
     register = Register(request)
     register.set_students(students)
     return redirect('calculator')
+
+
+class Calculator(ListView):
+    template_name = 'calculator/calculator.html'
+    
+    def get_queryset(self):
+        id_commission = int(self.kwargs['id'])
+        students = get_list_or_404( Student, comission_id = id_commission)
+        queryset = {
+            'students' : students
+        }
+        return queryset
 
 class Index(ListView):
     
