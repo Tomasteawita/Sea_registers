@@ -17,7 +17,7 @@ class School(models.Model):
 class Commission(models.Model):
     name = models.CharField(max_length = 3)
     school = models.ForeignKey(School, on_delete = models.CASCADE)
-    teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE, blank = True, null = True)
     
     def get_school(self, school_template_id):
         school = School.objects.get(id = school_template_id)
@@ -29,4 +29,7 @@ class Commission(models.Model):
 class Student(models.Model):
     name = models.CharField(max_length = 150)
     comission = models.ForeignKey(Commission, on_delete = models.CASCADE)
+    
+    def __str__(self):
+        return f'{self.name} - {self.comission}'
     

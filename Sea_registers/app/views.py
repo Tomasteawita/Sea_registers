@@ -10,27 +10,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-#@login_required
-def index(request):
-    
-    try:
-        teacher = Teacher.objects.get(user_id = request.user.id)
-    except:
-        print('NO SE PUDO TRAER A LA PROFE')
-        teacher = False
-        commission = False
-    else:
-        try:
-            commission = Commission.objects.filter(teacher_id = teacher.id)
-        except:
-            commission = False
-    finally:
-        context = {
-            'teacher' : teacher,
-            'commission' : commission 
-        }        
-    
-    return render(request, 'index.html', context = context)
 
 def calculator(request):
     return render(request,'calculator.html')
@@ -43,12 +22,10 @@ def inicialization_params_calculator(request, id_comission):
 
 class Index(ListView):
     
-    template_name = 'indexClass.html'
+    template_name = 'index.html'
     
     def get_queryset(self):
-        user_id = 2
-        teacher = get_object_or_404(Teacher, user_id = user_id)
-        commission = get_list_or_404( Commission,teacher_id = teacher.id)
+        commission = get_list_or_404( Commission, user_id = self.request.user.id)
         queryset = {
             'commission' : commission
             }
