@@ -8,67 +8,11 @@
     </section>
     <section class = "options">
         <aside>
-            <form action="post"> {% csrf_token %}
-                <ul>
-                    <li>
-                        <strong>Caculos</strong>
-                    </li>
-                    <li>
-                        <label for="">Agregar asistencia a todos</label>
-                        <button class = "submit"> + </button>
-                    </li>
-                    <li>
-                        <label for="">Restar asistencia a todos</label>
-                        <button class = "submit"> - </button>
-                        
-                    </li>
-                    <li>
-                        <label for="month">Mes actual</label>
-                        <input type="text" name="month" id="month">
-                    </li>
-                    <li>
-                        <label for="Days">Días habiles</label>
-                        <input type="text">
-                    </li>
-                    <li>
-                        <label for="mean_asistence">Asistencia media</label>
-                        <input type="text" placeholder="example of mean asistence">
-                    </li>
-                    <li>
-                        <label for="total_days_habils">Dias habiles total</label>
-                    </li>
-                    <li>
-                        <label for=""></label>
-                    </li>
-                    <li>
-                        <button submit="submit"></button>
-                    </li>
-                </ul>
-            </form>
+            {% include 'calculator/form.html' %}
         </aside>
         <div>
-            <table>
-                <thead>
-                  <tr>
-                    <th>Alumnos</th>
-                    <th>Restar asistencia</th>
-                    <th>Asistencia total</th>
-                    <th>Inasistencia total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    {% if object_list %}
-                        {% for student in object_list.students %}
-                            <tr> <!-- Registro -->
-                                <td>{{student.name}}</td> <!-- columna1 -->
-                                <td>Dato 2</td> <!-- columna2 -->
-                                <td>Dato 3</td> <!-- columna3 -->
-                                <td>Dato 3</td> <!-- columna4 -->
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tbody>
-              </table>
+            {% include 'calculator/table.html' %}
+        </div>
     </section>
 </main>
 {% endblock main %}

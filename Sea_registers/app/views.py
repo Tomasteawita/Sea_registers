@@ -1,44 +1,42 @@
 from typing import Any
 from django.db.models.query import QuerySet
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from .forms import * 
 from .models import *
 from .register import Register
-from django.views.generic import ListView 
-from django.views.generic.edit import CreateView, UpdateView, DeleteView,UpdateView
+from django.views.generic import ListView ,View
+from django.views.generic.edit import CreateView, UpdateView, DeleteView,UpdateView, FormView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
-def calculator(request):
-    return render(request,'calculator.html')
-
-def inicialization_params_calculator(request, id_comission):
-    students = Student.objects.filter(comission_id = id_comission)
-    register = Register(request)
-    register.set_students(students)
-    return redirect('calculator')
-
-
 class Calculator(ListView):
     template_name = 'calculator/calculator.html'
-    
-    def get_queryset(self):
-        id_commission = int(self.kwargs['id'])
-        students = get_list_or_404( Student, comission_id = id_commission)
-        queryset = {
-            'students' : students
-        }
-        return queryset
+    model = Student 
 
-class Index(ListView):
+    def get_queryset(self):
+        id_comission = self.kwargs['comission_id']
+        return Student.objects.filter(comission_id=id_comission)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        #id_comission = self.kwargs['comission_id']
+        students = self.get_queryset()
+        register = Register(self.request)
+        register.set_students(students)
+        # Agrega cualquier otro dato adicional al contexto si es necesario
+        return context
+    
+
+
+class Index(ListView,View):
     
     template_name = 'index.html'
-    
+        
     def get_queryset(self):
-        commission = get_list_or_404( Commission, user_id = self.request.user.id)
+        commission = Commission.objects.filter( user_id = self.request.user.id)
         queryset = {
             'commission' : commission
             }

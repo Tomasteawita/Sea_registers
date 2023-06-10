@@ -1,0 +1,22 @@
+<table>
+    <thead>
+      <tr>
+        <th>Alumnos</th>
+        <th>Restar asistencia</th>
+        <th>Asistencia total</th>
+        <th>Inasistencia total</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+            {% for student in object_list.students %}
+                <tr> <!-- Registro -->
+                    <td>{{student.name}}</td> <!-- columna1 -->
+                    <td>Dato 2</td> <!-- columna2 -->
+                    <td>Dato 3</td> <!-- columna3 -->
+                    <td>Dato 3</td> <!-- columna4 -->
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+  </table>

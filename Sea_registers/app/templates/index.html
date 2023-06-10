@@ -8,18 +8,20 @@
         </div>
     </section>
     <section class="commissions">
-        {% if object_list %}
+        {% if object_list.commission %}
             <h2>Comisiones</h2>
         {% else %}
             <h2>Agrega comisiones para poder empezar a calcular</h2>
         {% endif %}
         <hr>
         <div>
-            {% if object_list %}
+            {% if object_list.commission %}
                 {% for comision in object_list.commission %}
                     <article>
                         <strong>{{comision.name}}</strong>
+                        <strong>{{comision.id}}</strong>
                         
+                        <a href="{% url 'Calculator' comision.id %}">Calcular comision</a>
                     </article>
                 
                 {% endfor %}
