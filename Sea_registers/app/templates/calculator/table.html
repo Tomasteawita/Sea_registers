@@ -8,15 +8,13 @@
       </tr>
     </thead>
     <tbody>
-        {% if object_list %}
-            {% for student in object_list.students %}
-                <tr> <!-- Registro -->
-                    <td>{{student.name}}</td> <!-- columna1 -->
-                    <td>Dato 2</td> <!-- columna2 -->
-                    <td>Dato 3</td> <!-- columna3 -->
-                    <td>Dato 3</td> <!-- columna4 -->
-                </tr>
-            {% endfor %}
-        {% endif %}
+        {% for student in student_list %}
+            <tr> 
+                <td>{{student.name}}</td>
+                <td><a href="{% url 'Sub' student.id %}">-</a></td>
+                <td>Dato 3</td>
+                <td>Dato 3</td>
+            </tr>
+        {% endfor %}
     </tbody>
   </table>

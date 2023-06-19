@@ -18,7 +18,8 @@ class Calculator(ListView):
 
     def get_queryset(self):
         id_comission = self.kwargs['comission_id']
-        return Student.objects.filter(comission_id=id_comission)
+        student_list = Student.objects.filter(comission_id = id_comission) 
+        return student_list
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,6 +28,7 @@ class Calculator(ListView):
         register = Register(self.request)
         register.set_students(students)
         # Agrega cualquier otro dato adicional al contexto si es necesario
+        print(context)
         return context
     
 
@@ -71,3 +73,10 @@ class AdminLoginView(LoginView):
     
 class AdminLogoutView(LogoutView):
     template_name = 'login/logout.html'
+    
+
+def sub_assistence(request,student_id):
+    register = Register(request)
+    student = Student.objects.get(id = student_id)
+    register.sub_student(student.name)
+    return redirect("Calculator",1)

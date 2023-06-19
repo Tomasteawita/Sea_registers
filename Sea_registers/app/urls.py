@@ -8,4 +8,6 @@ urlpatterns = [
      path('singup/', SingUp.as_view(),name="Singup"),
      path('', Index.as_view(), name = "Index"),
      path('calculator/<int:comission_id>/', Calculator.as_view(), name="Calculator"), 
+     path('sub_assistence/<int:student_id>/', sub_assistence, name = "Sub")
+
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

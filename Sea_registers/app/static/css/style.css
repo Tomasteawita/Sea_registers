@@ -166,4 +166,17 @@ footer img {
   width: 64px;
 }
 
+.indexCalculator section:nth-child(2) {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 2fr;
+}
+.indexCalculator section:nth-child(2) aside {
+  width: 434px;
+  border-right: 1px solid #131114;
+}
+.indexCalculator section:nth-child(2) div table tbody tr td {
+  border: 1px solid #131114;
+}
+
 /*# sourceMappingURL=style.css.map */
