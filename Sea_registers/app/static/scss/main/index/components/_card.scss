@@ -1,0 +1,33 @@
+.indexMain{
+    article{
+        @include flexbox(column,space-around,center);
+        min-width: 300px;
+        max-width: 375px;
+        border: 1px $black solid;
+        border-radius: 32px;
+        text-align: center;
+        strong{
+            font-size: 2.1rem;
+        }
+        ul{
+            margin: auto;
+        }
+        div{
+            max-width: fit-content;
+            @include flexbox(row,space-evenly,center);
+            flex-wrap: wrap;
+            a{
+                margin: 24px 8px;
+                text-decoration: none;
+                border: 1px $black solid;
+                border-radius: 16px;
+                padding: 4px 8px;                
+                
+            }
+        }
+        i{  
+            color: $purple;
+            font-size: 1.6rem;
+        }
+    }
+}

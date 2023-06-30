@@ -17,13 +17,23 @@
         <div>
             {% if object_list.commission %}
                 {% for comision in object_list.commission %}
-                    <article>
-                        <strong>{{comision.name}}</strong>
-                        <strong>{{comision.id}}</strong>
-                        
-                        <a href="{% url 'Calculator' comision.id %}">Calcular comision</a>
-                    </article>
-                
+                    <div class="card" style="min-width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{comision.name}}</h5>
+                            <p class="card-text">Colegio nuestra señora del sagrado corazon.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Carlos Saul</li>
+                            <li class="list-group-item">Alfonsin</li>
+                            <li class="list-group-item">Alfredito</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link"><span><i class="bi bi-person-add"></i></span></a>
+                            <a href="#" class="card-link"><span><i class="bi bi-person-dash"></i></span></a>
+                            <a href="#" class="card-link"><span><i class="bi bi-person-gear"></i></span></a>
+                            <a href="{% url 'Calculator' comision.id %}" class="card-link"><span><i class="bi bi-calculator"></i></span></a>
+                        </div>
+                    </div>
                 {% endfor %}
 
             

@@ -1,0 +1,11 @@
+.indexCalculator{
+    aside{
+        form{
+            ul{
+                li{
+                    @include flexbox(column,space-evenly,left);
+                }
+            }
+        }
+    }
+}

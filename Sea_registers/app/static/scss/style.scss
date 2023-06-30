@@ -1,22 +1,28 @@
+@import 'utils/vars';
+@import 'utils/mixin';
+@import 'components/buttons';
+@import 'main/index/index';
+@import 'main/login/login';
+@import 'main/base/header';
+@import 'main/base/footer';
+@import 'main/calculator/calculator';
+@import 'main/calculator/form';
+@import 'main/calculator/table';
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-@import 'base/vars';
-@import 'components/mixin';
-@import 'components/buttons';
-@import 'components/loginCard';
-ul{
-    list-style-type: none;
+
+a{
+    text-decoration:none ;
 }
 body{
     background-color: $background
 }
-@import 'main/index/index';
-@import 'main/login';
-@import 'main/header';
-@import 'main/footer';
-@import 'main/calculator/calculator';
-@import 'main/calculator/form';
-@import 'main/calculator/table';
+
+ul{
+    list-style-type: none;
+}
+
+

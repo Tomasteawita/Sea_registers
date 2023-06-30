@@ -1,13 +1,77 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 button {
   border: 1px solid #131114;
   border-radius: 8px !important;
   background-color: transparent;
+}
+
+.indexMain article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 300px;
+  max-width: 375px;
+  border: 1px #131114 solid;
+  border-radius: 32px;
+  text-align: center;
+}
+.indexMain article strong {
+  font-size: 2.1rem;
+}
+.indexMain article ul {
+  margin: auto;
+}
+.indexMain article div {
+  max-width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.indexMain article div a {
+  margin: 24px 8px;
+  text-decoration: none;
+  border: 1px #131114 solid;
+  border-radius: 16px;
+  padding: 4px 8px;
+}
+.indexMain article i {
+  color: #8357BB;
+  font-size: 1.6rem;
+}
+
+.indexMain {
+  min-height: 600px;
+}
+.indexMain section {
+  margin: 32px 64px;
+}
+.indexMain section:first-child {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.indexMain section:first-child div {
+  display: inline-block;
+}
+.indexMain section.commissions h2 {
+  text-align: center;
+}
+.indexMain section.commissions > div {
+  display: grid;
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.indexMain section.commissions > div article.addCommission button {
+  background-color: #8357BB;
+  color: #F6F6F6;
+  border: none;
+  padding: 12px;
+  font-size: 42px;
 }
 
 .login-form {
@@ -39,55 +103,6 @@ button {
   border-radius: 24px;
   background-color: #E7E7E7;
   padding: 4px;
-}
-
-ul {
-  list-style-type: none;
-}
-
-body {
-  background-color: #F6F6F6;
-}
-
-.indexMain article {
-  min-width: 300px;
-  max-width: 375px;
-  border: 1px #131114 solid;
-  border-radius: 32px;
-  text-align: center;
-}
-
-.indexMain {
-  min-height: 600px;
-}
-.indexMain section {
-  margin: 32px 64px;
-}
-.indexMain section:first-child {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
-.indexMain section:first-child div {
-  display: inline-block;
-}
-.indexMain section.commissions h2 {
-  text-align: center;
-}
-.indexMain section.commissions div {
-  display: grid;
-  grid-auto-rows: minmax(100px, auto);
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-.indexMain section.commissions div article.addCommission button {
-  background-color: #8357BB;
-  color: #F6F6F6;
-  border: none;
-  padding: 12px;
-  font-size: 42px;
 }
 
 .login {
@@ -166,17 +181,50 @@ footer img {
   width: 64px;
 }
 
+.indexCalculator aside form ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: left;
+}
+
 .indexCalculator section:nth-child(2) {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 2fr;
 }
 .indexCalculator section:nth-child(2) aside {
-  width: 434px;
-  border-right: 1px solid #131114;
+  width: 256px;
+  border-right: 1px solid #e8e8e8;
+  background-color: whitesmoke;
 }
 .indexCalculator section:nth-child(2) div table tbody tr td {
   border: 1px solid #131114;
+}
+
+.indexCalculator aside form ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: left;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: #F6F6F6;
+}
+
+ul {
+  list-style-type: none;
 }
 
 /*# sourceMappingURL=style.css.map */

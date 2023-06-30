@@ -1,4 +1,4 @@
-@import 'articles';
+@import 'components/card';
 
 .indexMain{
     min-height: 600px;
@@ -15,7 +15,7 @@
             h2{
                 text-align: center;
             }
-            div{
+            >div{
                 @include grid(1,0,minmax(100px, auto),repeat(3,1fr));
                 gap: 32px;
                 article{

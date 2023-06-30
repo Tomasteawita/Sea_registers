@@ -1,82 +1,156 @@
-from typing import Any
-from django.db.models.query import QuerySet
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
-from .forms import * 
+from .forms import *
 from .models import *
 from .register import Register
-from django.views.generic import ListView ,View
-from django.views.generic.edit import CreateView, UpdateView, DeleteView,UpdateView, FormView
+from django.views.generic import ListView, View
+from django.views.generic.edit import (
+    CreateView, UpdateView, DeleteView, FormView
+)
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Calculator(ListView):
+    """
+    Vista que muestra la calculadora de asistencias para una comisión específica.
+    """
     template_name = 'calculator/calculator.html'
-    model = Student 
+    model = Student
 
     def get_queryset(self):
+        """
+        Obtiene la lista de estudiantes de la comisión especificada.
+
+        Returns:
+            QuerySet: Lista de estudiantes filtrados por comisión.
+        """
         id_comission = self.kwargs['comission_id']
-        student_list = Student.objects.filter(comission_id = id_comission) 
+        student_list = Student.objects.filter(comission_id=id_comission)
         return student_list
 
     def get_context_data(self, **kwargs):
+        """
+        Agrega datos adicionales al contexto.
+
+        Returns:
+            dict: Diccionario con el contexto actualizado.
+        """
         context = super().get_context_data(**kwargs)
-        #id_comission = self.kwargs['comission_id']
         students = self.get_queryset()
         register = Register(self.request)
         register.set_students(students)
         # Agrega cualquier otro dato adicional al contexto si es necesario
         print(context)
         return context
-    
 
 
-class Index(ListView,View):
-    
+class Index(ListView, View):
+    """
+    Vista de la página de inicio.
+    """
     template_name = 'index.html'
-        
+
     def get_queryset(self):
-        commission = Commission.objects.filter( user_id = self.request.user.id)
+        """
+        Obtiene las comisiones asociadas al usuario actual.
+
+        Returns:
+            dict: Diccionario con las comisiones filtradas por usuario.
+        """
+        commission = Commission.objects.filter(user_id=self.request.user.id)
         queryset = {
-            'commission' : commission
-            }
+            'commission': commission
+        }
         return queryset
-    
-    
-"""    
-class delete_post(DeleteView):
-    model = Post
-    success_url = '/'
-    template_name = 'confirm_post_delete.html'
-    
-class EditPost(UpdateView):
-    model = Post
-    success_url = '/'
-    template_name = 'edit_post.html'
-    fields = ['title','description','image','user','category']
-    
-class UpdatePost(CreateView):
-    model = Post
-    success_url = '/'
-    template_name = 'edit_post.html'
-    fields = ['title','description','image','category','avatar'] 
-"""
+
+
 class SingUp(CreateView):
+    """
+    Vista para registrar un nuevo usuario.
+    """
     form_class = SingUpForm
     success_url = '/'
     template_name = 'login/singup.html'
 
-class AdminLoginView(LoginView):
-    template_name = 'login/login.html'
-    
-class AdminLogoutView(LogoutView):
-    template_name = 'login/logout.html'
-    
 
-def sub_assistence(request,student_id):
+class AdminLoginView(LoginView):
+    """
+    Vista para el inicio de sesión del administrador.
+    """
+    template_name = 'login/login.html'
+
+
+class AdminLogoutView(LogoutView):
+    """
+    Vista para cerrar sesión del administrador.
+    """
+    template_name = 'login/logout.html'
+
+
+@login_required
+def sub_assistence(request, student_id):
+    """
+    Registra una asistencia negativa para el estudiante especificado.
+
+    Args:
+        request (HttpRequest): Objeto de solicitud HTTP.
+        student_id (int): ID del estudiante.
+
+    Returns:
+        HttpResponseRedirect: Redirige a la página de la calculadora.
+    """
     register = Register(request)
-    student = Student.objects.get(id = student_id)
+    student = get_object_or_404(Student, id=student_id)
     register.sub_student(student.name)
-    return redirect("Calculator",1)
+    return redirect("Calculator", 1)
+
+
+@login_required
+def add_assistence(request, student_id):
+    """
+    Registra una asistencia positiva para el estudiante especificado.
+
+    Args:
+        request (HttpRequest): Objeto de solicitud HTTP.
+        student_id (int): ID del estudiante.
+
+    Returns:
+        HttpResponseRedirect: Redirige a la página de la calculadora.
+    """
+    register = Register(request)
+    student = get_object_or_404(Student, id=student_id)
+    register.add_student(student.name)
+    return redirect("Calculator", 1)
+
+
+@login_required
+def add_all_students(request):
+    """
+    Registra asistencia positiva para todos los estudiantes.
+
+    Args:
+        request (HttpRequest): Objeto de solicitud HTTP.
+
+    Returns:
+        HttpResponseRedirect: Redirige a la página de la calculadora.
+    """
+    register = Register(request)
+    register.add_student()
+    return redirect("Calculator", 1)
+
+
+@login_required
+def bun_all_students(request):
+    """
+    Registra asistencia negativa para todos los estudiantes.
+
+    Args:
+        request (HttpRequest): Objeto de solicitud HTTP.
+
+    Returns:
+        HttpResponseRedirect: Redirige a la página de la calculadora.
+    """
+    register = Register(request)
+    register.sub_all_students()
+    return redirect("Calculator", 1)
