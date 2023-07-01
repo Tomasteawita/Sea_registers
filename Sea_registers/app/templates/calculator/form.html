@@ -4,34 +4,44 @@
             <strong>Caculos</strong>
         </li>
         <li>
-            <label for="">Agregar asistencia a todos</label>
-            <button type="submit"> + </button>
+            <label for="Add all">Agregar asistencia a todos</label>
+            <a class="btn btn-light" href="#">+</a>
         </li>
         <li>
-            <label for="">Restar asistencia a todos</label>
-            <button type="submit"> - </button>
-            
+            <label for="Sub all">Restar asistencia a todos</label>
+            <a class="btn btn-light" href="#">-</a>
         </li>
         <li>
-            <label for="month">Mes actual</label>
-            <input type="text" name="month" id="month">
+            <label for="months">Mes actual</label>
+                <select id="months" class="form-select" name="months">
+                    <option value="january">Enero</option>
+                    <option value="february">Febrero</option>
+                    <option value="march">Marzo</option>
+                    <option value="april">Abril</option>
+                    <option value="may">Mayo</option>
+                    <option value="june">Junio</option>
+                    <option value="july">Julio</option>
+                    <option value="august">Agosto</option>
+                    <option value="september">Septiembre</option>
+                    <option value="october">Octubre</option>
+                    <option value="november">Noviembre</option>
+                    <option value="december">Diciembre</option>
+                </select>
         </li>
         <li>
             <label for="Days">Días habiles</label>
-            <input type="text">
+            <input class="form-control" type="text">
         </li>
         <li>
             <label for="mean_asistence">Asistencia media</label>
-            <input type="text" placeholder="example of mean asistence">
+            <input class="form-control" type="text" placeholder="example of mean asistence">
         </li>
         <li>
             <label for="total_days_habils">Dias habiles total</label>
+            <input class="form-control" type="text">
         </li>
         <li>
-            <label for=""></label>
-        </li>
-        <li>
-            <button submit="submit">Calculasion</button>
+            <a class="btn btn-light rounded-pill px-3" href="#">Calcular</a>
         </li>
     </ul>
 </form>

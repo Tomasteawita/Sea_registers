@@ -3,7 +3,24 @@
         form{
             ul{
                 li{
-                    @include flexbox(column,space-evenly,left);
+                    @include flexbox(row,left,left);
+                    margin: 24px 0;
+                    input, select{
+                        max-width: 76px;
+                        margin-left: auto;
+                        margin-right: 12px;
+                    }
+                    &:first-child{
+                        border-bottom: 1px solid darken($background, 5);
+                    }
+                    &:last-child{
+                        margin-top: 32px;
+                        a{
+                            position: relative;
+                            top:75%;
+                            left: 25%;
+                        }
+                    }
                 }
             }
         }

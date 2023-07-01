@@ -3,6 +3,7 @@
       <tr>
         <th>Alumnos</th>
         <th>Restar asistencia</th>
+        <th>Sumar asistencia</th>
         <th>Asistencia total</th>
         <th>Inasistencia total</th>
       </tr>
@@ -10,11 +11,12 @@
     <tbody>
         {% for student in student_list %}
             <tr> 
-                <td>{{student.name}}</td>
-                <td><a href="{% url 'Sub' student.id %}">-</a></td>
-                <td>Dato 3</td>
-                <td>Dato 3</td>
+                <td><span>{{student.name}}</span></td>
+                <td><a class="btn btn-outline-dark" href="{% url 'Sub' student.id %}"> - </a></td>
+                <td><a class="btn btn-outline-dark" href="{% url 'Add' student.id %}"> + </a></td>
+                <td><span>x</span></td>
+                <td><span>x</span></td>
             </tr>
         {% endfor %}
     </tbody>
-  </table>
+</table>

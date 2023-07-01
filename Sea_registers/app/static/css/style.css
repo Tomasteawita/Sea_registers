@@ -47,16 +47,6 @@ button {
 .indexMain section {
   margin: 32px 64px;
 }
-.indexMain section:first-child {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
-.indexMain section:first-child div {
-  display: inline-block;
-}
 .indexMain section.commissions h2 {
   text-align: center;
 }
@@ -183,30 +173,75 @@ footer img {
 
 .indexCalculator aside form ul li {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: left;
   align-items: left;
+  margin: 24px 0;
+}
+.indexCalculator aside form ul li input, .indexCalculator aside form ul li select {
+  max-width: 76px;
+  margin-left: auto;
+  margin-right: 12px;
+}
+.indexCalculator aside form ul li:first-child {
+  border-bottom: 1px solid #e9e9e9;
+}
+.indexCalculator aside form ul li:last-child {
+  margin-top: 32px;
+}
+.indexCalculator aside form ul li:last-child a {
+  position: relative;
+  top: 75%;
+  left: 25%;
 }
 
-.indexCalculator section:nth-child(2) {
+.indexCalculator section {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 2fr;
 }
-.indexCalculator section:nth-child(2) aside {
+.indexCalculator section aside {
   width: 256px;
-  border-right: 1px solid #e8e8e8;
-  background-color: whitesmoke;
-}
-.indexCalculator section:nth-child(2) div table tbody tr td {
-  border: 1px solid #131114;
+  border-right: 1px solid #e9e9e9;
 }
 
 .indexCalculator aside form ul li {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: left;
   align-items: left;
+  margin: 24px 0;
+}
+.indexCalculator aside form ul li input, .indexCalculator aside form ul li select {
+  max-width: 76px;
+  margin-left: auto;
+  margin-right: 12px;
+}
+.indexCalculator aside form ul li:first-child {
+  border-bottom: 1px solid #e9e9e9;
+}
+.indexCalculator aside form ul li:last-child {
+  margin-top: 32px;
+}
+.indexCalculator aside form ul li:last-child a {
+  position: relative;
+  top: 75%;
+  left: 25%;
+}
+
+.indexCalculator table {
+  margin-top: 54px;
+}
+.indexCalculator table tbody tr {
+  border-top: 1px solid #131114;
+}
+.indexCalculator table tbody tr td a {
+  padding: 0px 8px 2px 8px;
+  margin: 18px 60px;
+}
+.indexCalculator table tbody tr td:nth-child(4) span, .indexCalculator table tbody tr td:nth-child(5) span {
+  display: inline-block;
+  margin: 18px 64px;
 }
 
 * {

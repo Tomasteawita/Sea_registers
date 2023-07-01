@@ -1,25 +1,11 @@
 @import './form';
 
-$background-aside:darken($background, .5);
-
 .indexCalculator{
-    section:nth-child(2){
+    section{
         @include grid(0,0,1fr,1fr 2fr);
         aside{
             width:256px;
-            border-right: 1px solid darken($background-aside, 5);
-            background-color: $background-aside ;
-        }
-        div{ 
-            table{
-                tbody{
-                    tr{
-                        td{
-                            border: 1px solid $black;
-                        }
-                    }
-                }
-            }
+            border-right: 1px solid darken($background, 5);
         }
     }
 }

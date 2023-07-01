@@ -4,13 +4,6 @@
     min-height: 600px;
     section{
         margin: 32px 64px;
-        &:first-child{
-            margin-top: 2rem;
-            @include flexbox(row,flex-end,center);
-            div{
-                display: inline-block;
-            }
-        }
         &.commissions{
             h2{
                 text-align: center;

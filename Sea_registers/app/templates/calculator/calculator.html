@@ -1,11 +1,6 @@
 {% extends 'base/main.html' %}
 {% block main %}
 <main class = "indexCalculator">
-    <section>
-        <div>
-            <span>{{request.user.username}}</span>
-        </div>
-    </section>
     <section class="options">
         <aside>
             {% include 'calculator/form.html' %}
