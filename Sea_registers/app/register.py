@@ -30,11 +30,21 @@ class Register:
         self.request = request
         self.session = request.session
         register = self.session.get("register")
+        current_comission = self.session.get("current_comission")
+        
         if not register:
             self.session["register"] = {}
             self.register = self.session["register"]
+            
         else:
             self.register = register
+        
+        if not current_comission:
+            self.session["current_comission"] = None
+            self.current_comission = self.session["current_comission"]
+        
+        else:
+            self.current_comission = current_comission
 
         self.available_days = 0
         self.month = ''
@@ -49,18 +59,26 @@ class Register:
             students (QuerySet): Conjunto de estudiantes.
 
         """
-        names = [student.name for student in students]
-        quantity_students = len(names)
-        assistences = [0] * quantity_students
-        inassistences = [0] * quantity_students
-        dict_students = {
-            'Alumno': names,
-            'Asistencia total': assistences,
-            'Inasistencia total': inassistences
-        }
-        self.register = dict_students
-        self.total_available_days = quantity_students * self.available_days
+        self.register = {}
+        for student in students:
+            self.register[str(student.id)] = {
+                "name": student.name,
+                "assistance": 0,
+                "inassistance": 0
+            }
+            
         self.save_register()
+
+    def set_current_comission(self, comission):
+        """
+        Actualiza las variables del objeto con la información actualizada sobre la comisión.
+        
+        Args:
+            comission (int): id de la comision.
+        """
+        self.session["current_comission"] = comission
+        self.current_comission = self.session["current_comission"]
+        self.session.modified = True
 
     def save_register(self):
         """

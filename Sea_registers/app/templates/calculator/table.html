@@ -9,14 +9,16 @@
       </tr>
     </thead>
     <tbody>
-        {% for student in student_list %}
-            <tr> 
-                <td><span>{{student.name}}</span></td>
-                <td><a class="btn btn-outline-dark" href="{% url 'Sub' student.id %}"> - </a></td>
-                <td><a class="btn btn-outline-dark" href="{% url 'Add' student.id %}"> + </a></td>
-                <td><span>x</span></td>
-                <td><span>x</span></td>
-            </tr>
+      {% if request.session.register.items %}
+        {% for key, value in request.session.register.items %}
+          <tr> 
+            <td><span>{{value.name}}</span></td>
+            <td><a class="btn btn-outline-dark" href="#"> - </a></td>
+            <td><a class="btn btn-outline-dark" href="#"> + </a></td>
+            <td><span>{{value.assistance}}</span></td>
+            <td><span>{{value.inassistance}}</span></td>
+          </tr>
         {% endfor %}
+      {% endif %}
     </tbody>
 </table>

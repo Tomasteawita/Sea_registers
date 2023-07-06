@@ -11,13 +11,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class Calculator(ListView):
+class Calculator(ListView, View):
     """
     Vista que muestra la calculadora de asistencias para una comisión específica.
     """
     template_name = 'calculator/calculator.html'
     model = Student
-
     def get_queryset(self):
         """
         Obtiene la lista de estudiantes de la comisión especificada.
@@ -26,7 +25,7 @@ class Calculator(ListView):
             QuerySet: Lista de estudiantes filtrados por comisión.
         """
         id_comission = self.kwargs['comission_id']
-        student_list = Student.objects.filter(comission_id=id_comission)
+        student_list = Student.objects.filter(comission_id = id_comission)
         return student_list
 
     def get_context_data(self, **kwargs):
@@ -34,14 +33,25 @@ class Calculator(ListView):
         Agrega datos adicionales al contexto.
 
         Returns:
-            dict: Diccionario con el contexto actualizado.
+            dict:{
+                'paginator': None, 
+                'page_obj': None, 
+                'is_paginated': False, 
+                'object_list': list, 
+                'view': <app.views.Calculator object at 0x000001D9F9D9E850>
+            }
         """
-        context = super().get_context_data(**kwargs)
-        students = self.get_queryset()
+        context = {}
         register = Register(self.request)
-        register.set_students(students)
-        # Agrega cualquier otro dato adicional al contexto si es necesario
+
+        if register.current_comission != self.kwargs['comission_id']:
+            students = self.get_queryset()
+            register.set_students(students)
+            register.set_current_comission(self.kwargs['comission_id'])
+
+        context["register"] = register
         print(context)
+        
         return context
 
 
@@ -103,10 +113,8 @@ def sub_assistence(request, student_id):
     register = Register(request)
     student = get_object_or_404(Student, id=student_id)
     register.sub_student(student.name)
-    return redirect("Calculator", 1)
+    return redirect("Calculator", register.current_comission)
 
-
-@login_required
 def add_assistence(request, student_id):
     """
     Registra una asistencia positiva para el estudiante especificado.
@@ -121,10 +129,8 @@ def add_assistence(request, student_id):
     register = Register(request)
     student = get_object_or_404(Student, id=student_id)
     register.add_student(student.name)
-    return redirect("Calculator", 1)
+    return redirect("Calculator", register.current_comission)
 
-
-@login_required
 def add_all_students(request):
     """
     Registra asistencia positiva para todos los estudiantes.
@@ -137,11 +143,9 @@ def add_all_students(request):
     """
     register = Register(request)
     register.add_student()
-    return redirect("Calculator", 1)
+    return redirect("Calculator", register.current_comission)
 
-
-@login_required
-def bun_all_students(request):
+def sub_all_students(request):
     """
     Registra asistencia negativa para todos los estudiantes.
 
@@ -153,4 +157,4 @@ def bun_all_students(request):
     """
     register = Register(request)
     register.sub_all_students()
-    return redirect("Calculator", 1)
+    return redirect("Calculator", register.current_comission)
