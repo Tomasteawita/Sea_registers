@@ -111,8 +111,7 @@ def sub_assistence(request, student_id):
         HttpResponseRedirect: Redirige a la página de la calculadora.
     """
     register = Register(request)
-    student = get_object_or_404(Student, id=student_id)
-    register.sub_student(student.name)
+    register.sub_student(student_id)
     return redirect("Calculator", register.current_comission)
 
 def add_assistence(request, student_id):
@@ -127,8 +126,7 @@ def add_assistence(request, student_id):
         HttpResponseRedirect: Redirige a la página de la calculadora.
     """
     register = Register(request)
-    student = get_object_or_404(Student, id=student_id)
-    register.add_student(student.name)
+    register.add_student(student_id)
     return redirect("Calculator", register.current_comission)
 
 def add_all_students(request):

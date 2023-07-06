@@ -13,8 +13,8 @@
         {% for key, value in request.session.register.items %}
           <tr> 
             <td><span>{{value.name}}</span></td>
-            <td><a class="btn btn-outline-dark" href="#"> - </a></td>
-            <td><a class="btn btn-outline-dark" href="#"> + </a></td>
+            <td><a class="btn btn-outline-dark" href="{% url 'Sub' key %}"> - </a></td>
+            <td><a class="btn btn-outline-dark" href="{% url 'Add' key %}"> + </a></td>
             <td><span>{{value.assistance}}</span></td>
             <td><span>{{value.inassistance}}</span></td>
           </tr>

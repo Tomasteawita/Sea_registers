@@ -103,24 +103,22 @@ class Register:
             self.register['Asistencia total'][student] -= 1
         self.save_register()
 
-    def sub_student(self, student):
+    def sub_student(self, student_id):
         """
         Resta una asistencia a un estudiante específico.
 
         Args:
-            student (str): Nombre del estudiante.
+            student_id (str): id del alumno.
         """
-        index = self.register['Alumno'].index(student)
-        self.register['Asistencia total'][index] -= 1
+        self.register[student_id]['assistance'] -= 1
         self.save_register()
 
-    def add_student(self, student):
+    def add_student(self, student_id):
         """
         Añade una asistencia a un estudiante específico.
 
         Args:
-            student (str): Nombre del estudiante.
+            student_id (str): id del alumno.
         """
-        index = self.register['Alumno'].index(student)
-        self.register['Asistencia total'][index] += 1
+        self.register[student_id]['assistance'] += 1
         self.save_register()
