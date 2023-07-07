@@ -91,16 +91,16 @@ class Register:
         """
         Añade una asistencia a todos los estudiantes.
         """
-        for student in self.register['Alumno']:
-            self.register['Asistencia total'][student] += 1
+        for key in self.register:
+            self.register[key]['assistance'] += 1
         self.save_register()
 
     def sub_all_students(self):
         """
         Resta una asistencia a todos los estudiantes.
         """
-        for student in self.register['Alumno']:
-            self.register['Asistencia total'][student] -= 1
+        for key in self.register:
+            self.register[key]['assistance'] -= 1
         self.save_register()
 
     def sub_student(self, student_id):

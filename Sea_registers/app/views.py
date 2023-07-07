@@ -140,7 +140,7 @@ def add_all_students(request):
         HttpResponseRedirect: Redirige a la página de la calculadora.
     """
     register = Register(request)
-    register.add_student()
+    register.add_all_students()
     return redirect("Calculator", register.current_comission)
 
 def sub_all_students(request):
