@@ -7,7 +7,6 @@ class Register:
         session (SessionStore): Almacén de sesión para guardar el registro.
         register (dict): Diccionario que contiene el registro de asistencias.
         available_days (int): Número de días disponibles para registrar asistencias.
-        month (str): Mes actual del registro.
         mean_assistence (int): Promedio de asistencias por estudiante.
         total_available_days (int): Total de días disponibles para asistencia.
 
@@ -47,10 +46,16 @@ class Register:
             self.current_comission = current_comission
 
         self.available_days = 0
-        self.month = ''
         self.mean_assistence = 0
         self.total_available_days = 0
-
+        
+    def set_available_days(self,days):
+        self.available_days = days
+        self.save_register()
+    
+    def get_available_days(self):
+        return self.available_days
+    
     def set_students(self, students):
         """
         Establece los estudiantes y crea el registro de asistencias.
@@ -63,7 +68,7 @@ class Register:
         for student in students:
             self.register[str(student.id)] = {
                 "name": student.name,
-                "assistance": 0,
+                "assistance": self.available_days,
                 "inassistance": 0
             }
             

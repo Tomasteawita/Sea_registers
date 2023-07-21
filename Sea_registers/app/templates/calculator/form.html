@@ -12,24 +12,7 @@
             <a class="btn btn-light" href="{% url 'Sub all' %}">-</a>
         </li>
         <li>
-            <label for="months">Mes actual</label>
-                <select id="months" class="form-select" name="months">
-                    <option value="january">Enero</option>
-                    <option value="february">Febrero</option>
-                    <option value="march">Marzo</option>
-                    <option value="april">Abril</option>
-                    <option value="may">Mayo</option>
-                    <option value="june">Junio</option>
-                    <option value="july">Julio</option>
-                    <option value="august">Agosto</option>
-                    <option value="september">Septiembre</option>
-                    <option value="october">Octubre</option>
-                    <option value="november">Noviembre</option>
-                    <option value="december">Diciembre</option>
-                </select>
-        </li>
-        <li>
-            <label for="Days">Días habiles</label>
+            <label for="Days">Días habiles: {{register.available_days}}</label>
             <input class="form-control" type="text">
         </li>
         <li>

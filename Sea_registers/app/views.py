@@ -9,7 +9,7 @@ from django.views.generic.edit import (
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.urls import reverse
 
 class Calculator(ListView, View):
     """
@@ -45,15 +45,28 @@ class Calculator(ListView, View):
         register = Register(self.request)
 
         if register.current_comission != self.kwargs['comission_id']:
+            register.set_available_days(self.kwargs['days'])
             students = self.get_queryset()
             register.set_students(students)
             register.set_current_comission(self.kwargs['comission_id'])
 
         context["register"] = register
-        print(context)
         
         return context
 
+class Config(View):
+    template_name = 'calculator/config.html'
+
+    def get(self, *args, **kwargs):
+        return render(self.request, self.template_name)
+
+    def post(self, request,*args, **kwargs): 
+        url = reverse('Calculator', kwargs={
+            'comission_id' : self.kwargs['comission_id'], 
+            'days' : request.POST.get('days'),
+            })
+
+        return redirect(url)
 
 class Index(ListView, View):
     """
@@ -112,7 +125,12 @@ def sub_assistence(request, student_id):
     """
     register = Register(request)
     register.sub_student(student_id)
-    return redirect("Calculator", register.current_comission)
+    url = reverse('Calculator', kwargs={
+            'comission_id' : register.current_comission, 
+            'days' : register.get_available_days()
+            })
+
+    return redirect(url)
 
 def add_assistence(request, student_id):
     """
@@ -127,7 +145,12 @@ def add_assistence(request, student_id):
     """
     register = Register(request)
     register.add_student(student_id)
-    return redirect("Calculator", register.current_comission)
+    url = reverse('Calculator', kwargs={
+            'comission_id' : register.current_comission, 
+            'days' : register.get_available_days()
+            })
+
+    return redirect(url)
 
 def add_all_students(request):
     """
@@ -141,7 +164,12 @@ def add_all_students(request):
     """
     register = Register(request)
     register.add_all_students()
-    return redirect("Calculator", register.current_comission)
+    url = reverse('Calculator', kwargs={
+            'comission_id' : register.current_comission, 
+            'days' : register.get_available_days()
+            })
+
+    return redirect(url)
 
 def sub_all_students(request):
     """
@@ -155,4 +183,9 @@ def sub_all_students(request):
     """
     register = Register(request)
     register.sub_all_students()
-    return redirect("Calculator", register.current_comission)
+    url = reverse('Calculator', kwargs={
+            'comission_id' : register.current_comission, 
+            'days' : register.get_available_days()
+            })
+
+    return redirect(url)

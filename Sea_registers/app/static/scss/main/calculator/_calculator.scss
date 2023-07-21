@@ -1,6 +1,6 @@
 @import './form';
 
-.indexCalculator{
+.calculatorMain{
     section{
         @include grid(0,0,1fr,1fr 2fr);
         aside{

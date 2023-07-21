@@ -171,77 +171,87 @@ footer img {
   width: 64px;
 }
 
-.indexCalculator aside form ul li {
+.calculatorMain aside form ul li {
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: left;
   margin: 24px 0;
 }
-.indexCalculator aside form ul li input, .indexCalculator aside form ul li select {
+.calculatorMain aside form ul li input, .calculatorMain aside form ul li select {
   max-width: 76px;
   margin-left: auto;
   margin-right: 12px;
 }
-.indexCalculator aside form ul li:first-child {
+.calculatorMain aside form ul li:first-child {
   border-bottom: 1px solid #e9e9e9;
 }
-.indexCalculator aside form ul li:last-child {
+.calculatorMain aside form ul li:last-child {
   margin-top: 32px;
 }
-.indexCalculator aside form ul li:last-child a {
+.calculatorMain aside form ul li:last-child a {
   position: relative;
   top: 75%;
   left: 25%;
 }
 
-.indexCalculator section {
+.calculatorMain section {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 2fr;
 }
-.indexCalculator section aside {
+.calculatorMain section aside {
   width: 256px;
   border-right: 1px solid #e9e9e9;
 }
 
-.indexCalculator aside form ul li {
+.calculatorMain aside form ul li {
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: left;
   margin: 24px 0;
 }
-.indexCalculator aside form ul li input, .indexCalculator aside form ul li select {
+.calculatorMain aside form ul li input, .calculatorMain aside form ul li select {
   max-width: 76px;
   margin-left: auto;
   margin-right: 12px;
 }
-.indexCalculator aside form ul li:first-child {
+.calculatorMain aside form ul li:first-child {
   border-bottom: 1px solid #e9e9e9;
 }
-.indexCalculator aside form ul li:last-child {
+.calculatorMain aside form ul li:last-child {
   margin-top: 32px;
 }
-.indexCalculator aside form ul li:last-child a {
+.calculatorMain aside form ul li:last-child a {
   position: relative;
   top: 75%;
   left: 25%;
 }
 
-.indexCalculator table {
+.calculatorMain table {
   margin-top: 54px;
 }
-.indexCalculator table tbody tr {
+.calculatorMain table tbody tr {
   border-top: 1px solid #131114;
 }
-.indexCalculator table tbody tr td a {
+.calculatorMain table tbody tr td a {
   padding: 0px 8px 2px 8px;
   margin: 18px 60px;
 }
-.indexCalculator table tbody tr td:nth-child(4) span, .indexCalculator table tbody tr td:nth-child(5) span {
+.calculatorMain table tbody tr td:nth-child(4) span, .calculatorMain table tbody tr td:nth-child(5) span {
   display: inline-block;
   margin: 18px 64px;
+}
+
+.configMain {
+  min-height: 700px;
+}
+.configMain section {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 * {
