@@ -1,4 +1,4 @@
-<form action="post"> {% csrf_token %}
+<form method="post"> {% csrf_token %}
     <ul>
         <li>
             <strong>Caculos</strong>
@@ -12,19 +12,7 @@
             <a class="btn btn-light" href="{% url 'Sub all' %}">-</a>
         </li>
         <li>
-            <label for="Days">Días habiles: {{register.available_days}}</label>
-            <input class="form-control" type="text">
-        </li>
-        <li>
-            <label for="mean_asistence">Asistencia media</label>
-            <input class="form-control" type="text" placeholder="example of mean asistence">
-        </li>
-        <li>
-            <label for="total_days_habils">Dias habiles total</label>
-            <input class="form-control" type="text">
-        </li>
-        <li>
-            <a class="btn btn-light rounded-pill px-3" href="#">Calcular</a>
+            <button class="btn btn-light rounded-pill px-3" type="submit">Calcular</button>
         </li>
     </ul>
 </form>

@@ -41,29 +41,43 @@ class Calculator(ListView, View):
                 'view': <app.views.Calculator object at 0x000001D9F9D9E850>
             }
         """
-        context = {}
         register = Register(self.request)
 
         if register.current_comission != self.kwargs['comission_id']:
-            register.set_available_days(self.kwargs['days'])
             students = self.get_queryset()
             register.set_students(students)
             register.set_current_comission(self.kwargs['comission_id'])
-
-        context["register"] = register
+    
+    def post(self, request, *args, **kwargs):
+        register = Register(request)
+        students = register.get_students()
+        results_data = {}
         
-        return context
+        total_assistance = sum(student['assistance'] for student in students.values())
+        total_inassistance = sum(student['inassistance'] for student in students.values())
+        
+        assistance_percentage = (total_assistance * 100) / (total_assistance + total_inassistance)
+        inassistance_percentage = (total_inassistance * 100) / (total_assistance + total_inassistance)
+        
+        results_data["total_assistance"] = total_assistance
+        results_data["total_inassistance"] = total_inassistance
+        results_data["assistance_percentage"] = assistance_percentage
+        results_data["inassistance_percentage"] = inassistance_percentage
+        
+        return render(request, self.template_name, {'results_data': results_data})
 
 class Config(View):
     template_name = 'calculator/config.html'
 
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
 
-    def post(self, request,*args, **kwargs): 
-        url = reverse('Calculator', kwargs={
-            'comission_id' : self.kwargs['comission_id'], 
-            'days' : request.POST.get('days'),
+    def post(self, request, *args, **kwargs): 
+        register = Register(request)
+        register.set_available_days(int(request.POST.get('days')))
+        
+        url = reverse('Calculator', kwargs = {
+            'comission_id' : self.kwargs['comission_id'] 
             })
 
         return redirect(url)
@@ -81,7 +95,7 @@ class Index(ListView, View):
         Returns:
             dict: Diccionario con las comisiones filtradas por usuario.
         """
-        commission = Commission.objects.filter(user_id=self.request.user.id)
+        commission = Commission.objects.filter(user_id = self.request.user.id)
         queryset = {
             'commission': commission
         }
@@ -125,9 +139,8 @@ def sub_assistence(request, student_id):
     """
     register = Register(request)
     register.sub_student(student_id)
-    url = reverse('Calculator', kwargs={
+    url = reverse('Calculator', kwargs = {
             'comission_id' : register.current_comission, 
-            'days' : register.get_available_days()
             })
 
     return redirect(url)
@@ -145,9 +158,8 @@ def add_assistence(request, student_id):
     """
     register = Register(request)
     register.add_student(student_id)
-    url = reverse('Calculator', kwargs={
+    url = reverse('Calculator', kwargs = {
             'comission_id' : register.current_comission, 
-            'days' : register.get_available_days()
             })
 
     return redirect(url)
@@ -164,9 +176,8 @@ def add_all_students(request):
     """
     register = Register(request)
     register.add_all_students()
-    url = reverse('Calculator', kwargs={
+    url = reverse('Calculator', kwargs = {
             'comission_id' : register.current_comission, 
-            'days' : register.get_available_days()
             })
 
     return redirect(url)
@@ -183,9 +194,8 @@ def sub_all_students(request):
     """
     register = Register(request)
     register.sub_all_students()
-    url = reverse('Calculator', kwargs={
+    url = reverse('Calculator', kwargs = {
             'comission_id' : register.current_comission, 
-            'days' : register.get_available_days()
             })
 
     return redirect(url)

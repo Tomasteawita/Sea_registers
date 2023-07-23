@@ -1,0 +1,13 @@
+{% if results_data %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            Resultados
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Porcentaje de asistencias total: {{ results_data.total_assistance }}</li>
+            <li class="list-group-item">Porcentaje de asistencias total: {{ results_data.total_inassistancee }}</li>
+            <li class="list-group-item">Porcentaje de asistencias total: {{ results_data.assistance_percentage }}</li>
+            <li class="list-group-item">Porcentaje de inasistencias total: {{ results_data.inassistance_percentage }}</li>
+        </ul>
+    </div>
+{% endif %}

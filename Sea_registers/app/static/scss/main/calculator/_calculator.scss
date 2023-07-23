@@ -1,7 +1,7 @@
 @import './form';
 
 .calculatorMain{
-    section{
+    section.options{
         @include grid(0,0,1fr,1fr 2fr);
         aside{
             width:256px;
