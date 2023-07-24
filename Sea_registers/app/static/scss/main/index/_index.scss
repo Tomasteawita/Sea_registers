@@ -11,17 +11,6 @@
             >div{
                 @include grid(1,0,minmax(100px, auto),repeat(3,1fr));
                 gap: 32px;
-                article{
-                    &.addCommission{
-                        button{
-                            background-color: $purple;
-                            color: $background;
-                            border: none;
-                            padding: 12px;
-                            font-size: 42px;
-                        }
-                    }
-                }
             }
         }
     }

@@ -13,14 +13,15 @@ class TeacherForm(forms.Form):
 class SchoolForm(forms.Form):
     name = forms.CharField(max_length = 150)
 
-class CommissionForm(forms.Form):
-    name = forms.CharField(max_length= 3)
-    school = forms.ModelChoiceField(queryset = School.objects.all())
-    teacher = forms.ModelChoiceField(queryset = Teacher.objects.all())
+class CommissionForm(forms.ModelForm):
+    class Meta:
+        model = Commission
+        fields = ['name', 'school']
 
-class StudentForm(forms.Form):
-    name = forms.CharField(max_length= 150)
-    comission = forms.ModelChoiceField(queryset = Commission.objects.all())
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ['name']
 
 class SingUpForm(UserCreationForm):
     class Meta:

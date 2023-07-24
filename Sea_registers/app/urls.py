@@ -2,15 +2,31 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import *
-urlpatterns = [
+
+url_logins = [
      path('login/', AdminLoginView.as_view(),name = "Login"),
      path('logout/', AdminLogoutView.as_view(),name = "Logout"),
-     path('singup/', SingUp.as_view(),name="Singup"),
-     path('', Index.as_view(), name = "Index"),
-     path('calculator/<int:comission_id>/', Calculator.as_view(), name="Calculator"),
+     path('singup/', SingUpView.as_view(),name="Singup")
+]
+
+url_calculates = [
      path('sub_assistence/<str:student_id>/', sub_assistence, name = "Sub"),
      path('add_assistence/<str:student_id>/', add_assistence, name = "Add"),
-     path('config/<int:comission_id>/', Config.as_view(), name = 'Config'),
      path('sub_all/', sub_all_students, name = "Sub all"),
      path('add_all/', add_all_students, name = "Add all")
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+]
+
+url_forms = [
+     path('create_student/<int:comission_id>/', StudentCreateView.as_view(), name = 'StudentCreate'),
+     path('delete_student/<pk>/', StudentDeleteView.as_view(), name = 'StudentDelete'),
+     path('students/<int:comission_id>/', StudentView.as_view(), name = 'Student'),
+     path('delete_comission/<pk>/', ComissionDeleteView.as_view(), name = 'ComissionDelete')
+]
+
+urls_utils = url_calculates + url_logins + url_forms
+
+urlpatterns = [
+     path('', IndexView.as_view(), name = "Index"),
+     path('calculator/<int:comission_id>/', CalculatorView.as_view(), name="Calculator"),     
+     path('config/<int:comission_id>/', ConfigView.as_view(), name = 'Config'),
+] + urls_utils + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -23,14 +23,20 @@
                             <li class="list-group-item">Alfredito</li>
                         </ul>
                         <div class="card-body">
-                            <a href="#" class="card-link"><span><i class="bi bi-person-add"></i></span></a>
-                            <a href="#" class="card-link"><span><i class="bi bi-person-dash"></i></span></a>
-                            <a href="#" class="card-link"><span><i class="bi bi-person-gear"></i></span></a>
+                            <a href="{% url 'StudentCreate' comision.id %}" class="card-link"><span><i class="bi bi-person-add"></i></span></a>
+                            <a href="{% url 'Student' comision.id %}" class="card-link"><span><i class="bi bi-person-gear"></i></span></a>
                             <a href="{% url 'Config' comision.id %}" class="card-link"><span><i class="bi bi-calculator"></i></span></a>
                         </div>
                     </div>
                 {% endfor %}
             {% endif %}
+            <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Agregar comision</h5>
+                  <p class="card-text">Luego de agregar una comisión, podras agregar a los estudiantes.</p>
+                  <a href="#" class="btn btn-primary">+</a>
+                </div>
+            </div>
         </div>
     </section>
 </main>

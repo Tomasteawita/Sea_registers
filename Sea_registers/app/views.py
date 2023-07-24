@@ -1,3 +1,5 @@
+from typing import Any
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from .forms import *
 from .models import *
@@ -9,44 +11,17 @@ from django.views.generic.edit import (
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
-class Calculator(ListView, View):
+class CalculatorView(ListView, View):
     """
     Vista que muestra la calculadora de asistencias para una comisión específica.
     """
     template_name = 'calculator/calculator.html'
     model = Student
-    def get_queryset(self):
-        """
-        Obtiene la lista de estudiantes de la comisión especificada.
-
-        Returns:
-            QuerySet: Lista de estudiantes filtrados por comisión.
-        """
-        id_comission = self.kwargs['comission_id']
-        student_list = Student.objects.filter(comission_id = id_comission)
-        return student_list
-
-    def get_context_data(self, **kwargs):
-        """
-        Agrega datos adicionales al contexto.
-
-        Returns:
-            dict:{
-                'paginator': None, 
-                'page_obj': None, 
-                'is_paginated': False, 
-                'object_list': list, 
-                'view': <app.views.Calculator object at 0x000001D9F9D9E850>
-            }
-        """
-        register = Register(self.request)
-
-        if register.current_comission != self.kwargs['comission_id']:
-            students = self.get_queryset()
-            register.set_students(students)
-            register.set_current_comission(self.kwargs['comission_id'])
+    
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
     
     def post(self, request, *args, **kwargs):
         register = Register(request)
@@ -66,15 +41,28 @@ class Calculator(ListView, View):
         
         return render(request, self.template_name, {'results_data': results_data})
 
-class Config(View):
+class ConfigView(View):
     template_name = 'calculator/config.html'
 
+    def get_queryset(self, commission_id):
+        """
+        Obtiene la lista de estudiantes de la comisión especificada.
+
+        Returns:
+            QuerySet: Lista de estudiantes filtrados por comisión.
+        """
+        id_comission = commission_id
+        student_list = Student.objects.filter(comission_id = id_comission)
+        return student_list
+    
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
     def post(self, request, *args, **kwargs): 
         register = Register(request)
         register.set_available_days(int(request.POST.get('days')))
+        students = self.get_queryset(self.kwargs['comission_id'])
+        register.set_students(students)
         
         url = reverse('Calculator', kwargs = {
             'comission_id' : self.kwargs['comission_id'] 
@@ -82,7 +70,7 @@ class Config(View):
 
         return redirect(url)
 
-class Index(ListView, View):
+class IndexView(ListView, View):
     """
     Vista de la página de inicio.
     """
@@ -101,8 +89,63 @@ class Index(ListView, View):
         }
         return queryset
 
+class StudentCreateView(CreateView):
+    model = Student
+    form_class = StudentForm  
+    template_name = 'forms/create_student.html'
+    
+    def get_success_url(self):
+        comission_id = self.kwargs['comission_id']
+        return reverse_lazy('StudentCreate', kwargs={'comission_id': comission_id})
+    
+    def form_valid(self, form):
+        commission_id = self.kwargs['comission_id']
+        commission = get_object_or_404(Commission, id=commission_id)
+        
+        student = form.save(commit=False)
+        student.comission = commission
+        student.save()
+        
+        return super().form_valid(form)
 
-class SingUp(CreateView):
+class StudentDeleteView(DeleteView):
+    model = Student
+    template_name = 'forms/delete_student.html'
+
+    def get_success_url(self):
+        comission_id = self.get_object().comission_id
+        return reverse_lazy('Student', kwargs={'comission_id': comission_id})
+
+class StudentView(ListView):
+    template_name = 'forms/student.html'
+    model = Student
+    def get_queryset(self, commission_id):
+        """
+        Obtiene la lista de estudiantes de la comisión especificada.
+
+        Returns:
+            QuerySet: Lista de estudiantes filtrados por comisión.
+        """
+        id_comission = commission_id
+        student_list = Student.objects.filter(comission_id = id_comission)
+        return student_list
+    
+    def get(self, request, *args, **kwargs):
+        students = self.get_queryset(kwargs['comission_id'])
+        commission = Commission.objects.get(id = kwargs['comission_id'])
+        
+        return render(request, self.template_name, context = {
+            'students' : students, 
+            'comission' : commission
+            })
+        
+class ComissionDeleteView(DeleteView):
+    model = Commission
+    template_name = 'forms/delete_comission.html'
+    success_url = '/'
+    
+
+class SingUpView(CreateView):
     """
     Vista para registrar un nuevo usuario.
     """

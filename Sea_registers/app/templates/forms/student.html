@@ -1,0 +1,22 @@
+{% extends 'base/main.html' %}
+{% block main %}
+<main class = "studentMain">
+    <section>
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                Comision: {{comission.name}} 
+                <a href="{% url 'ComissionDelete' comission.id %}" class="btn btn-danger">Eliminar</a>
+              </div>
+            <ul class="list-group list-group-flush">
+                {% for student in students %}
+                    <li class="list-group-item">
+                        <span>{{student.name}}</span>
+                        <a href="#" class="btn btn-info">Info</a>
+                        <a href="{% url 'StudentDelete' student.id %}" class="btn btn-danger">Eliminar</a>
+                    </li>
+                {% endfor %}
+            </ul>
+          </div>
+    </section>
+</main>
+{% endblock main %}

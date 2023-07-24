@@ -6,9 +6,10 @@
 @import 'main/base/header';
 @import 'main/base/footer';
 @import 'main/calculator/calculator';
-@import 'main/calculator/form';
-@import 'main/calculator/table';
 @import 'main/calculator/config';
+@import 'main/forms/forms';
+@import 'main/forms/student';
+
 *{
     margin: 0;
     padding: 0;
