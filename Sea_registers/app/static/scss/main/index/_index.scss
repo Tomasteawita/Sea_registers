@@ -2,16 +2,27 @@
 
 .indexMain{
     min-height: 600px;
-    section{
+    .presentation{
         margin: 32px 64px;
-        &.commissions{
-            h2{
-                text-align: center;
-            }
-            >div{
-                @include grid(1,0,minmax(100px, auto),repeat(3,1fr));
-                gap: 32px;
+        h2{
+            text-align: center;
+        }
+        div{
+            position: absolute;
+            top:15%;
+            left:85%;
+            @include flexbox(row,center,center);
+            strong{
+                display: inline-block;
+                margin-right: 8px;
             }
         }
+    }
+    
+    .comission-layout{
+        margin: 32px 64px;
+        @include grid(1,0,minmax(100px, auto),repeat(3,1fr));
+        gap: 32px;
+        
     }
 }

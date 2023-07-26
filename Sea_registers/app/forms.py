@@ -10,8 +10,10 @@ class TeacherForm(forms.Form):
     phone = forms.CharField(max_length = 12)
     image = forms.ImageField()
     
-class SchoolForm(forms.Form):
-    name = forms.CharField(max_length = 150)
+class SchoolForm(forms.ModelForm):
+    class Meta:
+        model = School
+        fields = ['name']
 
 class CommissionForm(forms.ModelForm):
     class Meta:

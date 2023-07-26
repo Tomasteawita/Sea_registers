@@ -16,14 +16,16 @@ url_calculates = [
      path('add_all/', add_all_students, name = "Add all")
 ]
 
-url_forms = [
+url_crud = [
+     path('students/<int:comission_id>/', StudentView.as_view(), name = 'Student'),
      path('create_student/<int:comission_id>/', StudentCreateView.as_view(), name = 'StudentCreate'),
      path('delete_student/<pk>/', StudentDeleteView.as_view(), name = 'StudentDelete'),
-     path('students/<int:comission_id>/', StudentView.as_view(), name = 'Student'),
-     path('delete_comission/<pk>/', ComissionDeleteView.as_view(), name = 'ComissionDelete')
+     path('create_comission/<pk>/', ComissionCreateView.as_view(), name = 'ComissionCreate'),
+     path('delete_comission/<pk>/', ComissionDeleteView.as_view(), name = 'ComissionDelete'),
+     path('create_school/<pk>/', SchoolCreateView.as_view(), name = 'SchoolCreate')
 ]
 
-urls_utils = url_calculates + url_logins + url_forms
+urls_utils = url_calculates + url_logins + url_crud
 
 urlpatterns = [
      path('', IndexView.as_view(), name = "Index"),

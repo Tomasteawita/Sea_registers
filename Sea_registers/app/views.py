@@ -1,5 +1,3 @@
-from typing import Any
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from .forms import *
 from .models import *
@@ -89,6 +87,21 @@ class IndexView(ListView, View):
         }
         return queryset
 
+class SchoolCreateView(CreateView):
+    model = School
+    form_class = SchoolForm
+    template_name = 'school/create_school.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('Index')
+    
+    def form_valid(self, form):
+        school = form.save(commit=False)
+        school.user_id = self.kwargs['pk']
+        school.save()
+        
+        return super().form_valid(form)
+
 class ComissionCreateView(CreateView):
     model = Commission
     form_class = CommissionForm
@@ -102,6 +115,11 @@ class ComissionCreateView(CreateView):
         comission.save()
         
         return super().form_valid(form)
+
+class ComissionDeleteView(DeleteView):
+    model = Commission
+    template_name = 'comission/delete_comission.html'
+    success_url = '/'
     
 class StudentCreateView(CreateView):
     model = Student
@@ -109,15 +127,11 @@ class StudentCreateView(CreateView):
     template_name = 'students/create_student.html'
     
     def get_success_url(self):
-        comission_id = self.kwargs['comission_id']
-        return reverse_lazy('StudentCreate', kwargs={'comission_id': comission_id})
+        return reverse_lazy('StudentCreate', kwargs={'comission_id': self.kwargs['comission_id']})
     
     def form_valid(self, form):
-        commission_id = self.kwargs['comission_id']
-        commission = get_object_or_404(Commission, id=commission_id)
-        
         student = form.save(commit=False)
-        student.comission = commission
+        student.comission_id = self.kwargs['comission_id']
         student.save()
         
         return super().form_valid(form)
@@ -152,12 +166,6 @@ class StudentView(ListView):
             'students' : students, 
             'comission' : commission
             })
-        
-class ComissionDeleteView(DeleteView):
-    model = Commission
-    template_name = 'comission/delete_comission.html'
-    success_url = '/'
-    
 
 class SingUpView(CreateView):
     """
