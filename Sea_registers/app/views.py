@@ -89,10 +89,24 @@ class IndexView(ListView, View):
         }
         return queryset
 
+class ComissionCreateView(CreateView):
+    model = Commission
+    form_class = CommissionForm
+    template_name = 'comission/create_comission.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('Index')
+    
+    def form_valid(self, form):
+        comission = form.save(commit=False)
+        comission.save()
+        
+        return super().form_valid(form)
+    
 class StudentCreateView(CreateView):
     model = Student
     form_class = StudentForm  
-    template_name = 'forms/create_student.html'
+    template_name = 'students/create_student.html'
     
     def get_success_url(self):
         comission_id = self.kwargs['comission_id']
@@ -110,14 +124,14 @@ class StudentCreateView(CreateView):
 
 class StudentDeleteView(DeleteView):
     model = Student
-    template_name = 'forms/delete_student.html'
+    template_name = 'students/delete_student.html'
 
     def get_success_url(self):
         comission_id = self.get_object().comission_id
         return reverse_lazy('Student', kwargs={'comission_id': comission_id})
 
 class StudentView(ListView):
-    template_name = 'forms/student.html'
+    template_name = 'students/student.html'
     model = Student
     def get_queryset(self, commission_id):
         """
@@ -141,7 +155,7 @@ class StudentView(ListView):
         
 class ComissionDeleteView(DeleteView):
     model = Commission
-    template_name = 'forms/delete_comission.html'
+    template_name = 'comission/delete_comission.html'
     success_url = '/'
     
 
