@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, get_list_or_40
 from .forms import *
 from .models import *
 from .register import Register
+from django.db.models import Prefetch
 from django.views.generic import ListView, View
 from django.views.generic.edit import (
     CreateView, UpdateView, DeleteView, FormView
@@ -11,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
-class CalculatorView(ListView, View):
+class CalculatorView(ListView, View, LoginRequiredMixin):
     """
     Vista que muestra la calculadora de asistencias para una comisión específica.
     """
@@ -39,7 +40,7 @@ class CalculatorView(ListView, View):
         
         return render(request, self.template_name, {'results_data': results_data})
 
-class ConfigView(View):
+class ConfigView(View, LoginRequiredMixin):
     template_name = 'calculator/config.html'
 
     def get_queryset(self, commission_id):
@@ -68,26 +69,22 @@ class ConfigView(View):
 
         return redirect(url)
 
-class IndexView(ListView, View):
-    """
-    Vista de la página de inicio.
-    """
+class IndexView(ListView):
     template_name = 'index.html'
+    model = Commission
 
     def get_queryset(self):
-        """
-        Obtiene las comisiones asociadas al usuario actual.
+        return Commission.objects.filter(user_id=self.request.user.id).prefetch_related(
+            Prefetch('student_set', queryset=Student.objects.all(), to_attr='students')
+        )
 
-        Returns:
-            dict: Diccionario con las comisiones filtradas por usuario.
-        """
-        commission = Commission.objects.filter(user_id = self.request.user.id)
-        queryset = {
-            'commission': commission
-        }
-        return queryset
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        commissions = context['object_list']
+        context['commissions_with_students'] = commissions
+        return context
 
-class SchoolCreateView(CreateView):
+class SchoolCreateView(CreateView, LoginRequiredMixin):
     model = School
     form_class = SchoolForm
     template_name = 'school/create_school.html'
@@ -102,7 +99,7 @@ class SchoolCreateView(CreateView):
         
         return super().form_valid(form)
 
-class ComissionCreateView(CreateView):
+class ComissionCreateView(CreateView,LoginRequiredMixin):
     model = Commission
     form_class = CommissionForm
     template_name = 'comission/create_comission.html'
@@ -112,16 +109,17 @@ class ComissionCreateView(CreateView):
     
     def form_valid(self, form):
         comission = form.save(commit=False)
+        comission.user_id = self.kwargs['pk']
         comission.save()
         
         return super().form_valid(form)
 
-class ComissionDeleteView(DeleteView):
+class ComissionDeleteView(DeleteView, LoginRequiredMixin):
     model = Commission
     template_name = 'comission/delete_comission.html'
     success_url = '/'
     
-class StudentCreateView(CreateView):
+class StudentCreateView(CreateView, LoginRequiredMixin):
     model = Student
     form_class = StudentForm  
     template_name = 'students/create_student.html'
@@ -136,7 +134,7 @@ class StudentCreateView(CreateView):
         
         return super().form_valid(form)
 
-class StudentDeleteView(DeleteView):
+class StudentDeleteView(DeleteView, LoginRequiredMixin):
     model = Student
     template_name = 'students/delete_student.html'
 
@@ -144,7 +142,7 @@ class StudentDeleteView(DeleteView):
         comission_id = self.get_object().comission_id
         return reverse_lazy('Student', kwargs={'comission_id': comission_id})
 
-class StudentView(ListView):
+class StudentView(ListView, LoginRequiredMixin):
     template_name = 'students/student.html'
     model = Student
     def get_queryset(self, commission_id):
@@ -167,7 +165,13 @@ class StudentView(ListView):
             'comission' : commission
             })
 
-class SingUpView(CreateView):
+class StudentUpdateView(UpdateView):
+    model = Student
+    success_url = '/'
+    template_name = 'students/update_student.html'
+    fields = ['name']
+
+class SingUpView(CreateView, LoginRequiredMixin):
     """
     Vista para registrar un nuevo usuario.
     """
@@ -175,20 +179,17 @@ class SingUpView(CreateView):
     success_url = '/'
     template_name = 'login/singup.html'
 
-
 class AdminLoginView(LoginView):
     """
     Vista para el inicio de sesión del administrador.
     """
     template_name = 'login/login.html'
 
-
 class AdminLogoutView(LogoutView):
     """
     Vista para cerrar sesión del administrador.
     """
     template_name = 'login/logout.html'
-
 
 @login_required
 def sub_assistence(request, student_id):

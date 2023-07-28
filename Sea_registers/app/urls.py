@@ -20,6 +20,7 @@ url_crud = [
      path('students/<int:comission_id>/', StudentView.as_view(), name = 'Student'),
      path('create_student/<int:comission_id>/', StudentCreateView.as_view(), name = 'StudentCreate'),
      path('delete_student/<pk>/', StudentDeleteView.as_view(), name = 'StudentDelete'),
+     path('update_studant/<pk>/',StudentUpdateView.as_view(), name = "StudentUpdate"),
      path('create_comission/<pk>/', ComissionCreateView.as_view(), name = 'ComissionCreate'),
      path('delete_comission/<pk>/', ComissionDeleteView.as_view(), name = 'ComissionDelete'),
      path('create_school/<pk>/', SchoolCreateView.as_view(), name = 'SchoolCreate')

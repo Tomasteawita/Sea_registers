@@ -4,7 +4,7 @@
 {% block main %}
 <main class="indexMain">
     <section class="presentation">
-        {% if object_list.commission %}
+        {% if commissions_with_students %}
             <h2>Comisiones</h2><div><strong>Añadir escuela</strong><a href="{% url 'SchoolCreate' request.user.id %}" class="btn btn-info">+</a></div>
         {% else %}
             <h2>Agrega comisiones para poder empezar a calcular</h2><div><strong>Añadir escuela</strong><a href="{% url 'SchoolCreate' request.user.id %}" class="btn btn-info">+</a></div>
@@ -12,22 +12,22 @@
         <hr>
     </section>
     <section class="comission-layout">
-        {% if object_list.commission %}
-            {% for comision in object_list.commission %}
+        {% if commissions_with_students %}
+            {% for commission in commissions_with_students %}
                 <div class="card" style="min-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">{{comision.name}}</h5>
+                        <h5 class="card-title">{{ commission.name }}</h5>
                         <p class="card-text">Colegio nuestra señora del sagrado corazon.</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Carlos Saul</li>
-                        <li class="list-group-item">Alfonsin</li>
-                        <li class="list-group-item">Alfredito</li>
+                        {% for student in commission.students %}
+                            <li class="list-group-item">{{ student.name }}</li>
+                        {% endfor %}
                     </ul>
                     <div class="card-body">
-                        <a href="{% url 'StudentCreate' comision.id %}" class="card-link"><span><i class="bi bi-person-add"></i></span></a>
-                        <a href="{% url 'Student' comision.id %}" class="card-link"><span><i class="bi bi-person-gear"></i></span></a>
-                        <a href="{% url 'Config' comision.id %}" class="card-link"><span><i class="bi bi-calculator"></i></span></a>
+                        <a href="{% url 'StudentCreate' commission.id %}" class="card-link"><span><i class="bi bi-person-add"></i></span></a>
+                        <a href="{% url 'Student' commission.id %}" class="card-link"><span><i class="bi bi-person-gear"></i></span></a>
+                        <a href="{% url 'Config' commission.id %}" class="card-link"><span><i class="bi bi-calculator"></i></span></a>
                     </div>
                 </div>
             {% endfor %}

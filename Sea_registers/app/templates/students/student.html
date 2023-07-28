@@ -12,7 +12,7 @@
                 {% for student in students %}
                     <li class="list-group-item">
                         <span>{{student.name}}</span>
-                        <a href="#" class="btn btn-info">Info</a>
+                        <a href="{% url 'StudentUpdate' student.id %}" class="btn btn-info">Info</a>
                         <a href="{% url 'StudentDelete' student.id %}" class="btn btn-danger">Eliminar</a>
                     </li>
                 {% endfor %}
