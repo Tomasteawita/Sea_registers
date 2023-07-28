@@ -31,14 +31,25 @@
                     </div>
                 </div>
             {% endfor %}
+        {% else %}
+            {% if user.is_authenticated %}
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Agregar comision</h5>
+                         <p class="card-text">Luego de agregar una comisión, podrás agregar a los estudiantes.</p>
+                         <a href="{% url 'ComissionCreate' request.user.id %}" class="btn btn-primary">+</a>
+                     </div>
+                </div>
+            {% else %}
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Para usar la aplicación debes primero iniciar sesión</h5>
+                        <p class="card-text">Luego de agregar una comisión, podrás agregar a los estudiantes.</p>
+                        <a href="{% url 'Login' %}" class="btn btn-primary">Iniciar sesión</a>
+                    </div>
+                </div>
+            {% endif %}
         {% endif %}
-        <div class="card text-center">
-            <div class="card-body">
-              <h5 class="card-title">Agregar comision</h5>
-              <p class="card-text">Luego de agregar una comisión, podras agregar a los estudiantes.</p>
-              <a href="{% url 'ComissionCreate' request.user.id %}" class="btn btn-primary">+</a>
-            </div>
-        </div>
     </section>
 </main>
 {% endblock main %}

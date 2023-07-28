@@ -4,9 +4,9 @@ from django.conf.urls.static import static
 from .views import *
 
 url_logins = [
-     path('login/', AdminLoginView.as_view(),name = "Login"),
-     path('logout/', AdminLogoutView.as_view(),name = "Logout"),
-     path('singup/', SingUpView.as_view(),name="Singup")
+     path('login/', LoginView.as_view(), name = "Login"),
+     path('logout/', LogoutView.as_view(), name = "Logout"),
+     path('singup/', SingUpView.as_view(), name = "Singup")
 ]
 
 url_calculates = [

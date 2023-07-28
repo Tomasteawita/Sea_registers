@@ -2,24 +2,26 @@
 {% load static %}
 {% block title %}Iniciar sesión{% endblock title %}
 {% block body %}
-    <main class="login">
-        <section>
-            <div>
+    <main class="loginMain">
+        <form method="post"> {% csrf_token %}
+            <div class="site mb-3">
                 <img src="{% static 'multimedia/sea.png' %}" alt=""><h1>Sea Softwares</h1>
             </div>
-            <form method="post" class="login-form"> {% csrf_token %}
-                <h2>Iniciar sesion</h1>
-                <ul>
-                    {{form.as_ul}}
-                </ul>
-                <button type="submit"> 
-                    Iniciar sesion
-                </button>
-                <nav>
-                <span>¿No tenes un usuario?</span> <a href="#">Registrarse</a>
-                </nav>
-            </form>
-        </section>
+            <div class="mb-3">
+                <label for="id_username" class="form-label">Usuario</label>
+                <input type="text" class="form-control" name="username" autofocus="" aria-describedby="emailHelp" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="id_password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="password" autocomplete="current-password" required="" id="id_password">
+            </div>
+            <div class="mb-3 form-check">
+                <label class="form-check-label" for="exampleCheck1"><span>¿No tenes un usuario? </span><a href="{% url 'Singup' %}">Registrarse</a></label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </main>
+    
     {% include './../base/footer.html' %}
 {% endblock body %}

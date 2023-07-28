@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
 from .register import Register
 from django.db.models import Prefetch
 from django.views.generic import ListView, View
 from django.views.generic.edit import (
-    CreateView, UpdateView, DeleteView, FormView
+    CreateView, UpdateView, DeleteView
 )
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
@@ -171,21 +171,23 @@ class StudentUpdateView(UpdateView):
     template_name = 'students/update_student.html'
     fields = ['name']
 
-class SingUpView(CreateView, LoginRequiredMixin):
+class SingUpView(CreateView):
     """
     Vista para registrar un nuevo usuario.
     """
     form_class = SingUpForm
-    success_url = '/'
     template_name = 'login/singup.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('Login')
 
-class AdminLoginView(LoginView):
+class LoginView(LoginView):
     """
     Vista para el inicio de sesión del administrador.
     """
     template_name = 'login/login.html'
 
-class AdminLogoutView(LogoutView):
+class LogoutView(LogoutView):
     """
     Vista para cerrar sesión del administrador.
     """
