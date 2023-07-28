@@ -1,35 +1,28 @@
-@import 'articles';
+@import 'components/card';
 
 .indexMain{
     min-height: 600px;
-    section{
+    .presentation{
         margin: 32px 64px;
-        &:first-child{
-            margin-top: 2rem;
-            @include flexbox(row,flex-end,center);
-            div{
+        h2{
+            text-align: center;
+        }
+        div{
+            position: absolute;
+            top:15%;
+            left:85%;
+            @include flexbox(row,center,center);
+            strong{
                 display: inline-block;
+                margin-right: 8px;
             }
         }
-        &.commissions{
-            h2{
-                text-align: center;
-            }
-            div{
-                @include grid(1,0,minmax(100px, auto),repeat(3,1fr));
-                gap: 32px;
-                article{
-                    &.addCommission{
-                        button{
-                            background-color: $purple;
-                            color: $background;
-                            border: none;
-                            padding: 12px;
-                            font-size: 42px;
-                        }
-                    }
-                }
-            }
-        }
+    }
+    
+    .comission-layout{
+        margin: 32px 64px;
+        @include grid(1,0,minmax(100px, auto),repeat(3,1fr));
+        gap: 32px;
+        
     }
 }

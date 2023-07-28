@@ -1,0 +1,17 @@
+{% extends 'base/main.html' %}
+{% block title %}Configurar días habiles{% endblock title %}
+{% block main %}
+<main class = "confignMain">
+    <section>
+        <form method="post"  class="card" style="width: 18rem;"> {% csrf_token %}
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <label for="days">Días habiles: </label>
+                <input id="days" name="days" class="form-control" type="text" aria-label="default input example">
+              </li>
+            </ul>
+            <button type="submit" class="btn btn-primary mb-3 mt-2 float-right ">Guardar cambios</button>
+        </form>
+    </section>
+</main>
+{% endblock main %}

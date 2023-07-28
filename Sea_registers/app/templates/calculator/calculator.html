@@ -1,13 +1,17 @@
 {% extends 'base/main.html' %}
+{% block title %}Registro de alumnos{% endblock title %}
 {% block main %}
-<main class = "indexCalculator">
-    <section>
+<main class = "calculatorMain">
+    <section class="options">
+        <aside>
+            {% include 'calculator/form.html' %}
+        </aside>
         <div>
-            <span>{{request.user.username}}</span>
+            {% include 'calculator/table.html' %}
         </div>
     </section>
-    <section>
-        
+    <section class="results">
+        {% include 'calculator/results.html' %}
     </section>
 </main>
 {% endblock main %}

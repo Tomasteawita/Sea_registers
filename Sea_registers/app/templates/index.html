@@ -1,34 +1,44 @@
 {% extends 'base/main.html' %}
-{% block main %}
+{% block title %}Sea Registers{% endblock title %}
 
+{% block main %}
 <main class="indexMain">
-    <section>
-        <div>
-            <span>{{request.user.username}}</span>
-        </div>
-    </section>
-    <section class="commissions">
-        {% if object_list %}
-            <h2>Comisiones</h2>
+    <section class="presentation">
+        {% if commissions_with_students %}
+            <h2>Comisiones</h2><div><strong>Añadir escuela</strong><a href="{% url 'SchoolCreate' request.user.id %}" class="btn btn-info">+</a></div>
         {% else %}
-            <h2>Agrega comisiones para poder empezar a calcular</h2>
+            <h2>Agrega comisiones para poder empezar a calcular</h2><div><strong>Añadir escuela</strong><a href="{% url 'SchoolCreate' request.user.id %}" class="btn btn-info">+</a></div>
         {% endif %}
         <hr>
-        <div>
-            {% if object_list %}
-                {% for comision in object_list.commission %}
-                    <article>
-                        <strong>{{comision.name}}</strong>
-                        
-                    </article>
-                
-                {% endfor %}
-
-            
-            {% endif %}
+    </section>
+    <section class="comission-layout">
+        {% if commissions_with_students %}
+            {% for commission in commissions_with_students %}
+                <div class="card" style="min-width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ commission.name }}</h5>
+                        <p class="card-text">Colegio nuestra señora del sagrado corazon.</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for student in commission.students %}
+                            <li class="list-group-item">{{ student.name }}</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="card-body">
+                        <a href="{% url 'StudentCreate' commission.id %}" class="card-link"><span><i class="bi bi-person-add"></i></span></a>
+                        <a href="{% url 'Student' commission.id %}" class="card-link"><span><i class="bi bi-person-gear"></i></span></a>
+                        <a href="{% url 'Config' commission.id %}" class="card-link"><span><i class="bi bi-calculator"></i></span></a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Agregar comision</h5>
+              <p class="card-text">Luego de agregar una comisión, podras agregar a los estudiantes.</p>
+              <a href="{% url 'ComissionCreate' request.user.id %}" class="btn btn-primary">+</a>
+            </div>
         </div>
     </section>
 </main>
-
-
 {% endblock main %}

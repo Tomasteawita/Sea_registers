@@ -1,19 +1,30 @@
+@import 'utils/vars';
+@import 'utils/mixin';
+@import 'components/buttons';
+@import 'main/index/index';
+@import 'main/login/login';
+@import 'main/base/header';
+@import 'main/base/footer';
+@import 'main/calculator/calculator';
+@import 'main/calculator/config';
+@import 'main/forms/forms';
+@import 'main/forms/student';
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-@import 'base/vars';
-@import 'components/mixin';
-@import 'components/buttons';
-@import 'components/loginCard';
+
+a{
+    text-decoration:none ;
+}
+body{
+    background-color: $background;
+}
+
 ul{
     list-style-type: none;
 }
-body{
-    background-color: $background
-}
-@import 'main/index/index';
-@import 'main/login';
-@import 'main/header';
-@import 'main/footer';
+
+

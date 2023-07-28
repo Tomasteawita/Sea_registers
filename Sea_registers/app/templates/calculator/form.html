@@ -1,0 +1,18 @@
+<form method="post"> {% csrf_token %}
+    <ul>
+        <li>
+            <strong>Caculos</strong>
+        </li>
+        <li>
+            <label for="Add all">Agregar asistencia a todos</label>
+            <a class="btn btn-light" href="{% url 'Add all' %}">+</a>
+        </li>
+        <li>
+            <label for="Sub all">Restar asistencia a todos</label>
+            <a class="btn btn-light" href="{% url 'Sub all' %}">-</a>
+        </li>
+        <li>
+            <button class="btn btn-light rounded-pill px-3" type="submit">Calcular</button>
+        </li>
+    </ul>
+</form>

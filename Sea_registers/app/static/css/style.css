@@ -1,13 +1,37 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 button {
   border: 1px solid #131114;
   border-radius: 8px !important;
   background-color: transparent;
+}
+
+.indexMain {
+  min-height: 600px;
+}
+.indexMain .presentation {
+  margin: 32px 64px;
+}
+.indexMain .presentation h2 {
+  text-align: center;
+}
+.indexMain .presentation div {
+  position: absolute;
+  top: 15%;
+  left: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.indexMain .presentation div strong {
+  display: inline-block;
+  margin-right: 8px;
+}
+.indexMain .comission-layout {
+  margin: 32px 64px;
+  display: grid;
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
 }
 
 .login-form {
@@ -39,55 +63,6 @@ button {
   border-radius: 24px;
   background-color: #E7E7E7;
   padding: 4px;
-}
-
-ul {
-  list-style-type: none;
-}
-
-body {
-  background-color: #F6F6F6;
-}
-
-.indexMain article {
-  min-width: 300px;
-  max-width: 375px;
-  border: 1px #131114 solid;
-  border-radius: 32px;
-  text-align: center;
-}
-
-.indexMain {
-  min-height: 600px;
-}
-.indexMain section {
-  margin: 32px 64px;
-}
-.indexMain section:first-child {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
-.indexMain section:first-child div {
-  display: inline-block;
-}
-.indexMain section.commissions h2 {
-  text-align: center;
-}
-.indexMain section.commissions div {
-  display: grid;
-  grid-auto-rows: minmax(100px, auto);
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-.indexMain section.commissions div article.addCommission button {
-  background-color: #8357BB;
-  color: #F6F6F6;
-  border: none;
-  padding: 12px;
-  font-size: 42px;
 }
 
 .login {
@@ -164,6 +139,94 @@ header ul li.nav-item a.nav-link.active:hover {
 
 footer img {
   width: 64px;
+}
+
+.calculatorMain aside form ul li {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: left;
+  margin: 24px 0;
+}
+.calculatorMain aside form ul li input, .calculatorMain aside form ul li select {
+  max-width: 76px;
+  margin-left: auto;
+  margin-right: 12px;
+}
+.calculatorMain aside form ul li:first-child {
+  border-bottom: 1px solid #e9e9e9;
+}
+.calculatorMain aside form ul li:last-child {
+  margin-top: 32px;
+}
+.calculatorMain aside form ul li:last-child a {
+  position: relative;
+  top: 75%;
+  left: 25%;
+}
+
+.calculatorMain table {
+  margin-top: 54px;
+}
+.calculatorMain table tbody tr {
+  border-top: 1px solid #131114;
+}
+.calculatorMain table tbody tr td a {
+  padding: 0px 8px 2px 8px;
+  margin: 18px 60px;
+}
+.calculatorMain table tbody tr td:nth-child(4) span, .calculatorMain table tbody tr td:nth-child(5) span {
+  display: inline-block;
+  margin: 18px 64px;
+}
+
+.calculatorMain section.options {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 2fr;
+}
+.calculatorMain section.options aside {
+  width: 256px;
+  border-right: 1px solid #e9e9e9;
+}
+
+.configMain {
+  min-height: 700px;
+}
+.configMain section {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createMain section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.studentMain select {
+  display: inline-block;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: #F6F6F6;
+}
+
+ul {
+  list-style-type: none;
 }
 
 /*# sourceMappingURL=style.css.map */

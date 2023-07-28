@@ -1,0 +1,22 @@
+.calculatorMain{
+    table{
+        margin-top: 54px;
+        tbody{
+            tr{
+                border-top: 1px solid $black;
+                td{ 
+                    a{
+                        padding: 0px 8px 2px 8px;
+                        margin: 18px 60px;
+                    }
+                    &:nth-child(4),&:nth-child(5){
+                        span{
+                            display: inline-block;
+                            margin: 18px 64px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

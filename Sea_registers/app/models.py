@@ -11,6 +11,7 @@ class Teacher(models.Model):
 
 class School(models.Model):
     name = models.CharField(max_length = 150)
+    user = models.ForeignKey(User, on_delete = models.CASCADE, blank = True, null = True)
     def __str__(self):
         return f'Escuela: {self.name}'
 
@@ -18,10 +19,6 @@ class Commission(models.Model):
     name = models.CharField(max_length = 3)
     school = models.ForeignKey(School, on_delete = models.CASCADE)
     user = models.ForeignKey(User, on_delete = models.CASCADE, blank = True, null = True)
-    
-    def get_school(self, school_template_id):
-        school = School.objects.get(id = school_template_id)
-        return f'{school}'
     
     def __str__(self):
         return f'{self.name}'

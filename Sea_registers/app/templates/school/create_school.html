@@ -1,0 +1,13 @@
+{% extends 'base/main.html' %}
+{% block title %}Crear escuela{% endblock title %}
+{% block main %}
+<main class = "createMain">
+    <section>
+        <form action="." method="post">
+            {% csrf_token %}
+            {{ form.as_ul }}
+        <button type="submit">Guardar</button>
+        </form>
+    </section>
+</main>
+{% endblock main %}

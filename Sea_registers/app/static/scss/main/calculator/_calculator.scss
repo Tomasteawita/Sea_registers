@@ -1,0 +1,12 @@
+@import './components/form';
+@import './components/table';
+
+.calculatorMain{
+    section.options{
+        @include grid(0,0,1fr,1fr 2fr);
+        aside{
+            width:256px;
+            border-right: 1px solid darken($background, 5);
+        }
+    }
+}

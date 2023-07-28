@@ -1,0 +1,5 @@
+.createMain{
+    section{
+        @include flexbox(column, center, center);
+    }
+}

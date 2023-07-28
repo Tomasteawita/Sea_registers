@@ -1,0 +1,24 @@
+<table>
+    <thead>
+      <tr>
+        <th>Alumnos</th>
+        <th>Restar asistencia</th>
+        <th>Sumar asistencia</th>
+        <th>Asistencia total</th>
+        <th>Inasistencia total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if request.session.register.items %}
+        {% for key, value in request.session.register.items %}
+          <tr> 
+            <td><span>{{value.name}}</span></td>
+            <td><a class="btn btn-outline-dark" href="{% url 'Sub' key %}"> - </a></td>
+            <td><a class="btn btn-outline-dark" href="{% url 'Add' key %}"> + </a></td>
+            <td><span>{{value.assistance}}</span></td>
+            <td><span>{{value.inassistance}}</span></td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+</table>
