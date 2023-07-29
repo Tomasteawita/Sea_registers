@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    container_name: postgres-bofi
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      bofi_net:
+        ipv4_address: 172.7.7.1
+  
+  django:
+    build: 
+      context: .
+      dockerfile: Dockerfile.python
+    #"python manage.py runserver 0.0.0.0:8000"
+    command: tail -f /dev/null 
+    working_dir: /home/app
+    container_name: bofi
+    volumes: 
+      - .:/home/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      bofi_net:
+        ipv4_address: 172.7.7.2
+    
+  sass:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    command: tail -f /dev/null 
+    working_dir: /home/app/
+    container_name: bofi-style
+    volumes: 
+      - .:/home/app
+    networks:
+      bofi_net:
+        ipv4_address: 172.7.7.3
+
+networks:
+  bofi_net: # Name of the network
+    ipam: # IP Address Management
+      driver: default
+      config:
+        - subnet: 172.7.7.0/16 # Subnet
+        # 172.7.7.0 is the default subnet for docker
+        # 16 is the number of bits used for the network

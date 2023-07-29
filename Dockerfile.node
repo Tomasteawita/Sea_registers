@@ -1,0 +1,5 @@
+# Utilizamos la imagen de Node con Alpine como base
+FROM node:alpine
+
+#RUN npm install nodemon
+RUN npm install -g sass
