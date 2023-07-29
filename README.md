@@ -73,8 +73,13 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-5. Finalmente podremos correr el proyecto con:
+5. Creo un usuario administrador; ejecuto el comando, luego completo los campos solicitados:
+```shell
+python manage.py createsuperuser
+```
+
+6. Finalmente podremos correr el proyecto con:
 ```shell
 python manage.py runserver 0.0.0.0:8000
 ```
-en nuestro navegador accedemos a la direccion: 127.0.0.1:8000 para acceder al index o bien podemos ingresar directamente desde http://localhost:8000
+En nuestro navegador accedemos a la direccion: 127.0.0.1:8000 para acceder al index o bien podemos ingresar directamente desde http://localhost:8000
