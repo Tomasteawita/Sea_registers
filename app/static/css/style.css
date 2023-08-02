@@ -138,10 +138,24 @@ footer img {
 }
 
 .createMain section {
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.createMain section form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.createMain section form li {
+  list-style: none;
+  padding: 24px;
+}
+.createMain section form button {
+  margin-bottom: 12px;
 }
 
 .studentMain select {

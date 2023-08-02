@@ -3,10 +3,13 @@
 {% block main %}
 <main class = "createMain">
     <section>
-        <form action="." method="post">
+        <form action="." method="post" class="card">
             {% csrf_token %}
-            {{ form.as_ul }}
-        <button type="submit">Guardar</button>
+            <li>
+                <label for="id_name" class="form-label">Nombre del colegio</label>
+                <input type="text" class="form-control" name="name" autocomplete="current-password" required="" id="id_name">
+            </li>
+            <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </section>
 </main>

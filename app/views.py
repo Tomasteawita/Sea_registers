@@ -74,8 +74,8 @@ class IndexView(ListView):
     model = Commission
 
     def get_queryset(self):
-        return Commission.objects.filter(user_id=self.request.user.id).prefetch_related(
-            Prefetch('student_set', queryset=Student.objects.all(), to_attr='students')
+        return Commission.objects.filter(user_id = self.request.user.id).prefetch_related(
+            Prefetch('student_set', queryset = Student.objects.all(), to_attr = 'students')
         )
 
     def get_context_data(self, **kwargs):
@@ -104,11 +104,17 @@ class ComissionCreateView(CreateView,LoginRequiredMixin):
     form_class = CommissionForm
     template_name = 'comission/create_comission.html'
     
+    def get(self, request, *args, **kwargs):
+        user_id = kwargs['pk']
+        schools = School.objects.filter( user_id = user_id)
+        school_form = {}
+        return render(request, self.template_name)
+    
     def get_success_url(self):
         return reverse_lazy('Index')
     
     def form_valid(self, form):
-        comission = form.save(commit=False)
+        comission = form.save(commit = False)
         comission.user_id = self.kwargs['pk']
         comission.save()
         

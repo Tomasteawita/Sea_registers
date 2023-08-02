@@ -1,5 +1,16 @@
 .createMain{
     section{
+        height: 600px;
         @include flexbox(column, center, center);
+        form{
+            @include flexbox(column, space-between, center);
+            li{
+                list-style: none;
+                padding: 24px;
+            }
+            button{
+                margin-bottom: 12px;
+            }
+        }
     }
 }
