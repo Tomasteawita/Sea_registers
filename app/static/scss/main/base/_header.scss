@@ -1,12 +1,19 @@
-header{
-    width: 100vw;
+header.navbar{
+    width: 100%;
+    //margin-right: 0;
+    //margin-left: 0;
+    //padding:0px 64px;
     background-color: $purple;
-    margin-right: 0;
-    margin-left: 0;
-    padding:0px 64px ;
+    nav.container-fluid{
+        background-color: $purple;
+        div.offcanvas{
+            background-color: $purple;
+        }
+    }
     img{
         width: 40px;
         margin-right: 12px;
+        margin-left: 32px;
     }
     ul{
         li.nav-item{

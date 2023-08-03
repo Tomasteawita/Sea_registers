@@ -48,34 +48,42 @@ button {
   margin-right: 12px;
 }
 
-header {
-  width: 100vw;
+header.navbar {
+  width: 100%;
   background-color: #8357BB;
-  margin-right: 0;
-  margin-left: 0;
-  padding: 0px 64px;
 }
-header img {
+header.navbar nav.container-fluid {
+  background-color: #8357BB;
+}
+header.navbar nav.container-fluid div.offcanvas {
+  background-color: #8357BB;
+}
+header.navbar img {
   width: 40px;
   margin-right: 12px;
+  margin-left: 32px;
 }
-header ul li.nav-item a.nav-link {
+header.navbar ul li.nav-item a.nav-link {
   color: #050307;
   transition: all 0.3s;
 }
-header ul li.nav-item a.nav-link:hover {
+header.navbar ul li.nav-item a.nav-link:hover {
   color: #2b1a3d;
 }
-header ul li.nav-item a.nav-link.active {
+header.navbar ul li.nav-item a.nav-link.active {
   color: #050307;
   background-color: #F6F6F6;
 }
-header ul li.nav-item a.nav-link.active:hover {
+header.navbar ul li.nav-item a.nav-link.active:hover {
   background-color: white;
 }
 
 footer img {
   width: 64px;
+  margin-left: 32px;
+}
+footer ul {
+  margin-right: 32px;
 }
 
 .calculatorMain aside form ul li {
@@ -174,6 +182,10 @@ a {
 
 body {
   background-color: #F6F6F6;
+}
+
+main {
+  margin-top: 128px;
 }
 
 ul {

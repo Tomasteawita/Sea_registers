@@ -22,7 +22,9 @@ a{
 body{
     background-color: $background;
 }
-
+main{
+    margin-top: 128px;
+}
 ul{
     list-style-type: none;
 }

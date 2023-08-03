@@ -20,6 +20,12 @@ class CommissionForm(forms.ModelForm):
         model = Commission
         fields = ['name', 'school']
 
+    def __init__(self, user, *args, **kwargs):
+        super(CommissionForm, self).__init__(*args, **kwargs)
+        # Filtrar las escuelas según el usuario registrado
+        self.fields['school'].queryset = School.objects.filter(user=user)
+
+
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student

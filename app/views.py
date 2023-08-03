@@ -99,25 +99,24 @@ class SchoolCreateView(CreateView, LoginRequiredMixin):
         
         return super().form_valid(form)
 
-class ComissionCreateView(CreateView,LoginRequiredMixin):
+class ComissionCreateView(CreateView, LoginRequiredMixin):
     model = Commission
     form_class = CommissionForm
     template_name = 'comission/create_comission.html'
-    
-    def get(self, request, *args, **kwargs):
-        user_id = kwargs['pk']
-        schools = School.objects.filter( user_id = user_id)
-        school_form = {}
-        return render(request, self.template_name)
-    
+
     def get_success_url(self):
         return reverse_lazy('Index')
-    
+
+    def get_form_kwargs(self):
+        kwargs = super(ComissionCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def form_valid(self, form):
-        comission = form.save(commit = False)
-        comission.user_id = self.kwargs['pk']
-        comission.save()
-        
+        commission = form.save(commit=False)
+        commission.user_id = self.kwargs['pk']
+        commission.save()
+
         return super().form_valid(form)
 
 class ComissionDeleteView(DeleteView, LoginRequiredMixin):
