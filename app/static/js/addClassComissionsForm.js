@@ -41,6 +41,6 @@ function addClassesToForm() {
   }
 
   // Llamar a la función cuando el contenido del DOM esté cargado
-  document.addEventListener('DOMContentLoaded', function () {
-    addClassesToForm();
-  });
+document.addEventListener('DOMContentLoaded', function () {
+  addClassesToForm();
+});

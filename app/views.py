@@ -62,6 +62,7 @@ class ConfigView(View, LoginRequiredMixin):
         register.set_available_days(int(request.POST.get('days')))
         students = self.get_queryset(self.kwargs['comission_id'])
         register.set_students(students)
+        register.set_current_comission(self.kwargs['comission_id'])
         
         url = reverse('Calculator', kwargs = {
             'comission_id' : self.kwargs['comission_id'] 

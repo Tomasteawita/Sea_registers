@@ -1,12 +1,16 @@
 {% extends 'base/main.html' %}
+{% load static %}
+{% block scripts %}
+    <script src="{% static 'js/addClassStudentsForms.js' %}"></script>
+{% endblock scripts %}
 {% block title %}Agregar estudiante{% endblock title %}
 {% block main %}
 <main class = "createMain">
     <section>
-        <form action="." method="post">
+        <form action="." method="post" class="card">
             {% csrf_token %}
             {{ form.as_ul }}
-        <button type="submit">Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </section>
 </main>

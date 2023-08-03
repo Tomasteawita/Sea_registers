@@ -31,7 +31,7 @@
                     </div>
                 </div>
             {% endfor %}
-        {% else %}
+            {% endif %}
             {% if user.is_authenticated %}
                 <div class="card text-center">
                     <div class="card-body">
@@ -49,7 +49,6 @@
                     </div>
                 </div>
             {% endif %}
-        {% endif %}
     </section>
 </main>
 {% endblock main %}
