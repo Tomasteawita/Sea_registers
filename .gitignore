@@ -1,4 +1,4 @@
-postgres_data/
+mysql_data/
 app/__pycache__/
 __pycache__/
 migrations/

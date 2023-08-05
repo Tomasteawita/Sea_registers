@@ -76,17 +76,27 @@ WSGI_APPLICATION = 'Sea_registers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+#DATABASES = {
+#   'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'postgres',
+#        'USER': 'postgres',
+#        'PASSWORD': 'postgres',
+#        'HOST': 'db',
+#        'PORT': 5432
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'RestAnalytics',  # Reemplaza 'nombre_base_de_datos' por el nombre de tu base de datos
+        'USER': 'root',
+        'PASSWORD': 'TomasteawitaProyecta2002!',
+        'HOST': 'db',  # Nombre del servicio del contenedor de MySQL en docker-compose.yml
+        'PORT': '3306',  # Puerto del servicio del contenedor de MySQL en docker-compose.yml
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

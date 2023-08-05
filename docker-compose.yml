@@ -2,16 +2,18 @@ version: '3'
 
 services:
   db:
-    image: postgres:15-alpine
+    image: mysql:latest
+    container_name: db
+    command: --secure-file-priv=""
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    container_name: postgres-bofi
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      MYSQL_ROOT_PASSWORD: TomasteawitaProyecta2002!
+      MYSQL_DATABASE: RestAnalytics
+      MYSQL_USER: CuevaTomasArg
+      MYSQL_PASSWORD: TomasteawitaProyecta2002
     ports:
-      - 5432:5432
+      - 3306:3306
+    volumes:
+      - ./mysql_data:/var/lib/mysql
     networks:
       bofi_net:
         ipv4_address: 172.7.7.1
@@ -20,10 +22,9 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.python
-    #"python manage.py runserver 0.0.0.0:8000"
     command: tail -f /dev/null 
     working_dir: /home/app
-    container_name: bofi
+    container_name: django-app
     volumes: 
       - .:/home/app
     ports:
@@ -33,19 +34,6 @@ services:
     networks:
       bofi_net:
         ipv4_address: 172.7.7.2
-    
-  sass:
-    build:
-      context: .
-      dockerfile: Dockerfile.node
-    command: tail -f /dev/null 
-    working_dir: /home/app/
-    container_name: bofi-style
-    volumes: 
-      - .:/home/app
-    networks:
-      bofi_net:
-        ipv4_address: 172.7.7.3
 
 networks:
   bofi_net: # Name of the network
