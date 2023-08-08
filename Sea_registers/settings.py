@@ -56,7 +56,7 @@ ROOT_URLCONF = 'Sea_registers.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR,'app/templates'],
+        'DIRS': [BASE_DIR, 'app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,25 +76,14 @@ WSGI_APPLICATION = 'Sea_registers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-#   'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'postgres',
-#        'USER': 'postgres',
-#        'PASSWORD': 'postgres',
-#        'HOST': 'db',
-#        'PORT': 5432
-#    }
-#}
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'RestAnalytics',  # Reemplaza 'nombre_base_de_datos' por el nombre de tu base de datos
-        'USER': 'root',
-        'PASSWORD': 'TomasteawitaProyecta2002!',
-        'HOST': 'db',  # Nombre del servicio del contenedor de MySQL en docker-compose.yml
-        'PORT': '3306',  # Puerto del servicio del contenedor de MySQL en docker-compose.yml
+        'NAME': 'SeaRegistersDB',  # Nombre de la nueva base de datos
+        'USER': 'root',  # Usuario de MySQL
+        'PASSWORD': 'TuContraseñaDeMySQL',  # Contraseña de MySQL
+        'HOST': 'localhost',  # Puede ser 'localhost' si MySQL está en el mismo servidor
+        'PORT': '3306',  # Puerto de MySQL
     }
 }
 

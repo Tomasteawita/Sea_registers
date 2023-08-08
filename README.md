@@ -46,25 +46,25 @@ Se propone desarrollar una aplicación que automatice estos procesos, permitiend
 ## Imagenes de Docker
 * node:alpine
 * python:3.9-alpine
-* postgres:15-alpine
+* mysql:latest
 
 ## Instalación y ejecución del proyecto
 
 Para ejecutar el proyecto debemos tener Docker instalado.
 
-1. Nos posicionamos en el directorio raiz del proyecto y creamos la carpeta postgres_data:
+1. Nos posicionamos en el directorio raiz del proyecto y creamos la carpeta mysql_data:
 ```bash
-mkdir postgres_data
+mkdir mysql_data
 ```
 
-2. Luego de crear la carpeta que usaremos como volumen de PostgreSQL, corremos nuestros contenedores:
+2. Luego de crear la carpeta que usaremos como volumen de MySQL, corremos nuestros contenedores:
 ```bash
 docker-compose up --build
 ```
 3. Una vez creado el entorno de trabajo, accedemos al contenedor del servicio Django en modo interactivo:
 
 ```bash
-docker exec -it bofi sh
+docker exec -it django-app sh
 ```
 
 4. Dentro del contenedor, ejecutamos las migraciones:
