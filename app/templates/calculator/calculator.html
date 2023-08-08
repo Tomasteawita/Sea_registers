@@ -1,16 +1,14 @@
 {% extends 'base/main.html' %}
 {% block title %}Registro de alumnos{% endblock title %}
 {% block main %}
-<main class = "calculatorMain">
+<main class = "calculatorMain" style="margin-top:64px">
     <section class="options">
         <aside>
             {% include 'calculator/form.html' %}
         </aside>
-        <div>
+        <div class="container-table">
             {% include 'calculator/table.html' %}
         </div>
-    </section>
-    <section class="results">
         {% include 'calculator/results.html' %}
     </section>
 </main>

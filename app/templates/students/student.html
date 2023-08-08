@@ -3,17 +3,19 @@
 {% block main %}
 <main class = "studentMain">
     <section>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="min-width: 18rem;">
             <div class="card-header">
-                Comision: {{comission.name}} 
+                <span>Comision: {{comission.name}}</span> 
                 <a href="{% url 'ComissionDelete' comission.id %}" class="btn btn-danger">Eliminar</a>
               </div>
             <ul class="list-group list-group-flush">
                 {% for student in students %}
-                    <li class="list-group-item">
+                    <li class="list-group-item options">
                         <span>{{student.name}}</span>
-                        <a href="{% url 'StudentUpdate' student.id %}" class="btn btn-info">Info</a>
-                        <a href="{% url 'StudentDelete' student.id %}" class="btn btn-danger">Eliminar</a>
+                        <div>
+                            <a href="{% url 'StudentUpdate' student.id %}" class="btn btn-light">Info</a>
+                            <a href="{% url 'StudentDelete' student.id %}" class="btn btn-danger">Eliminar</a>
+                        </div>
                     </li>
                 {% endfor %}
             </ul>

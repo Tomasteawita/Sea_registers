@@ -1,5 +1,20 @@
 .studentMain{
-    select{
+    @include flexbox(column, center, center);
+    margin-top: 64px;
+    min-height: 500px;
+    section{
         display: inline-block;
+        width: 700px;
+        div.card-header{
+            @include grid(0,0,1fr,3fr 1fr);
+            align-items:center
+        }
+        li.options{
+            @include grid(0,0,1fr, 3fr 1fr);
+            align-items:center
+            span{
+                margin-left: 12px;
+            }
+        }
     }
 }
