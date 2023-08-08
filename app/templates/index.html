@@ -4,51 +4,46 @@
 {% block main %}
 <main class="indexMain">
     <section class="presentation">
-        {% if commissions_with_students %}
-            <h2>Comisiones</h2><div><strong>Añadir escuela</strong><a href="{% url 'SchoolCreate' request.user.id %}" class="btn btn-info">+</a></div>
+        {% if object_list %}
+            <h2>Comisiones</h2>
+            <div><strong>Añadir escuela</strong><a href="{% url 'SchoolCreate' request.user.id %}" class="btn btn-primary">+</a></div>
         {% else %}
-            <h2>Agrega comisiones para poder empezar a calcular</h2><div><strong>Añadir escuela</strong><a href="{% url 'SchoolCreate' request.user.id %}" class="btn btn-info">+</a></div>
+            <h2>Agrega comisiones para poder empezar a calcular</h2>
+            <div><strong>Añadir escuela</strong><a href="{% url 'SchoolCreate' request.user.id %}" class="btn btn-primary">+</a></div>
         {% endif %}
         <hr>
     </section>
     <section class="comission-layout">
-        {% if commissions_with_students %}
-            {% for commission in commissions_with_students %}
-                <div class="card" style="min-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ commission.name }}</h5>
-                        <p class="card-text">Colegio nuestra señora del sagrado corazon.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        {% for student in commission.students %}
-                            <li class="list-group-item">{{ student.name }}</li>
-                        {% endfor %}
-                    </ul>
-                    <div class="card-body">
-                        <a href="{% url 'StudentCreate' commission.id %}" class="card-link"><span><i class="bi bi-person-add"></i></span></a>
-                        <a href="{% url 'Student' commission.id %}" class="card-link"><span><i class="bi bi-person-gear"></i></span></a>
-                        <a href="{% url 'Config' commission.id %}" class="card-link"><span><i class="bi bi-calculator"></i></span></a>
-                    </div>
+        {% for commission in object_list %}
+            <div class="card" style="min-width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ commission.name }}</h5>
+                    <p class="card-text">Colegio nuestra señora del sagrado corazon.</p>
                 </div>
-            {% endfor %}
-            {% endif %}
-            {% if user.is_authenticated %}
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Agregar comision</h5>
-                         <p class="card-text">Luego de agregar una comisión, podrás agregar a los estudiantes.</p>
-                         <a href="{% url 'ComissionCreate' request.user.id %}" class="btn btn-primary">+</a>
-                     </div>
+                <div class="options">
+                    <a href="{% url 'StudentCreate' commission.id %}" class="card-link"><span><i class="bi bi-person-add icon-rounded"></i></span></a>
+                    <a href="{% url 'Student' commission.id %}" class="card-link"><span><i class="bi bi-person-gear icon-rounded"></i></span></a>
+                    <a href="{% url 'Config' commission.id %}" class="card-link"><span><i class="bi bi-calculator icon-rounded"></i></span></a>
+                </div>                
+            </div>
+        {% endfor %}
+        {% if user.is_authenticated %}
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Agregar comision</h5>
+                    <p class="card-text">Luego de agregar una comisión, podrás agregar a los estudiantes.</p>
+                    <a href="{% url 'ComissionCreate' request.user.id %}" class="btn btn-primary">+</a>
                 </div>
-            {% else %}
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Para usar la aplicación debes primero iniciar sesión</h5>
-                        <p class="card-text">Luego de agregar una comisión, podrás agregar a los estudiantes.</p>
-                        <a href="{% url 'Login' %}" class="btn btn-primary">Iniciar sesión</a>
-                    </div>
+            </div>
+        {% else %}
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Para usar la aplicación debes primero iniciar sesión</h5>
+                    <p class="card-text">Luego de agregar una comisión, podrás agregar a los estudiantes.</p>
+                    <a href="{% url 'Login' %}" class="btn btn-primary">Iniciar sesión</a>
                 </div>
-            {% endif %}
+            </div>
+        {% endif %}
     </section>
 </main>
 {% endblock main %}

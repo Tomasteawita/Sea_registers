@@ -23,6 +23,31 @@
         margin: 32px 64px;
         @include grid(1,0,minmax(100px, auto),repeat(3,1fr));
         gap: 32px;
-        
+        justify-items: center;
+        align-items: start;
+        div.card{
+            div.options{
+                @include flexbox(row,space-evenly,center);
+                margin: 32px auto;
+                a{
+                    margin: auto 12px ;
+                    span{
+                        font-size:32px ;
+                        .icon-rounded {
+                            border: 2px solid $purple; 
+                            border-radius: 50%;
+                            padding: 5px 10px;
+                            transition: all .5s;
+                            color: $purple;
+                            &:hover{
+                                background:$purple;
+                                color: $background;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+

@@ -2,8 +2,10 @@
     min-height:700px;
     section{
         height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flexbox(row,center,center);
+        form{
+            display: inline-block;
+            width: 300px;
+        }
     }
 }

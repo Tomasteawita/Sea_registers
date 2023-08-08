@@ -3,10 +3,23 @@
 
 .calculatorMain{
     section.options{
-        @include grid(0,0,1fr,1fr 2fr);
+        @include grid(0,0,1fr 1fr,1fr 3fr);
+        margin-top: 64px;
+        grid-template-areas: 
+        "aside table"
+        "aside results";
         aside{
             width:256px;
             border-right: 1px solid darken($background, 5);
+            grid-area: aside;
+        }
+        div.container-table{
+            grid-area: table;
+            margin:12px 15%;
+        }
+        div.card{
+            grid-area: results;
+            margin:42px 32%;
         }
     }
 }

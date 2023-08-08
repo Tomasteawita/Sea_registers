@@ -75,14 +75,10 @@ class IndexView(ListView):
     model = Commission
 
     def get_queryset(self):
-        return Commission.objects.filter(user_id = self.request.user.id).prefetch_related(
-            Prefetch('student_set', queryset = Student.objects.all(), to_attr = 'students')
-        )
+        return Commission.objects.filter(user_id=self.request.user.id)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        commissions = context['object_list']
-        context['commissions_with_students'] = commissions
         return context
 
 class SchoolCreateView(CreateView, LoginRequiredMixin):

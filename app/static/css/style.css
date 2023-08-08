@@ -32,6 +32,32 @@ button {
   grid-auto-rows: minmax(100px, auto);
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+  justify-items: center;
+  align-items: start;
+}
+.indexMain .comission-layout div.card div.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 32px auto;
+}
+.indexMain .comission-layout div.card div.options a {
+  margin: auto 12px;
+}
+.indexMain .comission-layout div.card div.options a span {
+  font-size: 32px;
+}
+.indexMain .comission-layout div.card div.options a span .icon-rounded {
+  border: 2px solid #8357BB;
+  border-radius: 50%;
+  padding: 5px 10px;
+  transition: all 0.5s;
+  color: #8357BB;
+}
+.indexMain .comission-layout div.card div.options a span .icon-rounded:hover {
+  background: #8357BB;
+  color: #F6F6F6;
 }
 
 .loginMain form {
@@ -78,12 +104,60 @@ header.navbar ul li.nav-item a.nav-link.active:hover {
   background-color: white;
 }
 
-footer img {
+footer {
+  border-top: 1px darkgray solid;
+  padding-top: 32px;
+}
+footer nav {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 3fr 1fr;
+}
+footer nav div {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin-left: 64px;
+}
+footer nav div img {
   width: 64px;
   margin-left: 32px;
 }
-footer ul {
-  margin-right: 32px;
+footer nav div span {
+  display: inline-block;
+  font-size: 1.2rem;
+  margin-left: 12px;
+}
+footer nav ul {
+  margin-right: 64px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+}
+footer nav ul li {
+  margin: 12px 16px;
+}
+footer nav ul li a {
+  color: #8357BB;
+}
+footer > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid transparent; /* Establece un borde inicial transparente */
+  border-image: gradient(white 30%, darkgray 40%, white 30%); /* Crea el degradado */
+  border-image-slice: 1;
+  margin-top: 4px;
+}
+footer > div p {
+  display: inline-block;
+  width: max-content;
+  margin-top: 4px;
 }
 
 .calculatorMain aside form ul li {
@@ -127,12 +201,23 @@ footer ul {
 
 .calculatorMain section.options {
   display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 3fr;
+  margin-top: 64px;
+  grid-template-areas: "aside table" "aside results";
 }
 .calculatorMain section.options aside {
   width: 256px;
   border-right: 1px solid #e9e9e9;
+  grid-area: aside;
+}
+.calculatorMain section.options div.container-table {
+  grid-area: table;
+  margin: 12px 15%;
+}
+.calculatorMain section.options div.card {
+  grid-area: results;
+  margin: 42px 32%;
 }
 
 .configMain {
@@ -141,8 +226,13 @@ footer ul {
 .configMain section {
   height: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+.configMain section form {
+  display: inline-block;
+  width: 300px;
 }
 
 .createMain section {
@@ -166,8 +256,31 @@ footer ul {
   margin-bottom: 12px;
 }
 
-.studentMain select {
+.studentMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 64px;
+  min-height: 500px;
+}
+.studentMain section {
   display: inline-block;
+  width: 700px;
+}
+.studentMain section div.card-header {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+}
+.studentMain section li.options {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 3fr 1fr;
+}
+.studentMain section li.options align-items:center span {
+  margin-left: 12px;
 }
 
 * {
@@ -190,6 +303,12 @@ main {
 
 ul {
   list-style-type: none;
+}
+
+.btn-primary {
+  background-color: #8357BB !important; /* Cambia el color de fondo */
+  border-color: #8357BB !important; /* Cambia el color del borde */
+  color: #fff; /* Cambia el color del texto */
 }
 
 /*# sourceMappingURL=style.css.map */
