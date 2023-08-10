@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'Sea_registers.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'searegisters',  # Nombre de la nueva base de datos
+        'NAME': 'RestAnalytics',  # Nombre de la nueva base de datos
         'USER': 'root',  # Usuario de MySQL
         'PASSWORD': 'TomasteawitaProyecta2002!',  # Contraseña de MySQL
-        'HOST': 'localhost',  # Puede ser 'localhost' si MySQL está en el mismo servidor
+        'HOST': 'db',  # Puede ser 'localhost' si MySQL está en el mismo servidor
         'PORT': '3306',  # Puerto de MySQL
     }
 }

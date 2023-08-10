@@ -5,15 +5,33 @@
     section{
         display: inline-block;
         width: 700px;
+        div.card{
+            @media only screen and (min-width:560px) and (max-width:700px){
+                max-width: 75%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            @media only screen and (max-width:559px){
+                width: 360px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
         div.card-header{
             @include grid(0,0,1fr,3fr 1fr);
-            align-items:center
+            align-items:center;
+            @media only screen and (max-width:700px) {
+                grid-template-columns: 1fr 1fr;
+            }
         }
         li.options{
             @include grid(0,0,1fr, 3fr 1fr);
             align-items:center
             span{
                 margin-left: 12px;
+            }
+            @media only screen and (max-width:700px) {
+                grid-template-columns: 1fr 1fr;
             }
         }
     }

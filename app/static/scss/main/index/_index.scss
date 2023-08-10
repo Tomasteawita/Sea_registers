@@ -17,6 +17,11 @@
                 margin-right: 8px;
             }
         }
+        @media only screen and (max-with:920px){
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
     }
     
     .comission-layout{
@@ -47,6 +52,12 @@
                     }
                 }
             }
+        }
+        @media only screen and (min-width: 400px) and (max-width: 920px) {
+            grid-template-columns: 1fr 1fr;    
+        }
+        @media only screen and (max-width: 399px) {
+            grid-template-columns: 1fr;    
         }
     }
 }

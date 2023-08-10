@@ -6,6 +6,10 @@
         form{
             display: inline-block;
             width: 300px;
+            margin: 32px 40% !important;
+            @media only screen and (max-width:560px){
+                margin: 32px 32px;
+            }
         }
     }
 }

@@ -21,5 +21,13 @@
             grid-area: results;
             margin:42px 32%;
         }
+        @media only screen and (max-width:500){
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 2fr 1fr;
+            grid-template-areas: 
+            "aside"
+            "table"
+            "results";
+        }
     }
 }

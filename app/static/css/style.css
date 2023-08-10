@@ -26,6 +26,13 @@ button {
   display: inline-block;
   margin-right: 8px;
 }
+@media only screen and (max-with: 920px) {
+  .indexMain .presentation {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
 .indexMain .comission-layout {
   margin: 32px 64px;
   display: grid;
@@ -59,6 +66,16 @@ button {
   background: #8357BB;
   color: #F6F6F6;
 }
+@media only screen and (min-width: 400px) and (max-width: 920px) {
+  .indexMain .comission-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 399px) {
+  .indexMain .comission-layout {
+    grid-template-columns: 1fr;
+  }
+}
 
 .loginMain form {
   margin: 128px 500px;
@@ -72,6 +89,26 @@ button {
 .loginMain form div.site img {
   width: 64px;
   margin-right: 12px;
+}
+@media only screen and (min-width: 1100px) and (max-width: 1330px) {
+  .loginMain form {
+    margin: 128px 300px;
+  }
+}
+@media only screen and (min-width: 920px) and (max-width: 1099px) {
+  .loginMain form {
+    margin: 128px 250px;
+  }
+}
+@media only screen and (min-width: 650px) and (max-width: 919px) {
+  .loginMain form {
+    margin: 128px 200px;
+  }
+}
+@media only screen and (max-width: 649px) {
+  .loginMain form {
+    margin: 128px 32px;
+  }
 }
 
 header.navbar {
@@ -143,6 +180,17 @@ footer nav ul li {
 }
 footer nav ul li a {
   color: #8357BB;
+}
+@media only screen and (min-width: 650px) and (max-width: 920px) {
+  footer nav {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 649px) {
+  footer nav {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 }
 footer > div {
   display: flex;
@@ -219,6 +267,13 @@ footer > div p {
   grid-area: results;
   margin: 42px 32%;
 }
+@media only screen and (max-width: 500) {
+  .calculatorMain section.options {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-areas: "aside" "table" "results";
+  }
+}
 
 .configMain {
   min-height: 700px;
@@ -233,6 +288,12 @@ footer > div p {
 .configMain section form {
   display: inline-block;
   width: 300px;
+  margin: 32px 40% !important;
+}
+@media only screen and (max-width: 560px) {
+  .configMain section form {
+    margin: 32px 32px;
+  }
 }
 
 .createMain section {
@@ -268,11 +329,30 @@ footer > div p {
   display: inline-block;
   width: 700px;
 }
+@media only screen and (min-width: 560px) and (max-width: 700px) {
+  .studentMain section div.card {
+    max-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media only screen and (max-width: 559px) {
+  .studentMain section div.card {
+    width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 .studentMain section div.card-header {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 3fr 1fr;
   align-items: center;
+}
+@media only screen and (max-width: 700px) {
+  .studentMain section div.card-header {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 .studentMain section li.options {
   display: grid;
@@ -281,6 +361,11 @@ footer > div p {
 }
 .studentMain section li.options align-items:center span {
   margin-left: 12px;
+}
+@media only screen and (max-width: 700px) {
+  .studentMain section li.options {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 * {
