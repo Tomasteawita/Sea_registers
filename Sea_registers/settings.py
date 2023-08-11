@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-sj$7z4kb5yjsdb+@9ml)dk+c=93s!scdsh=wj-%6!f*tai8w9^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['searegisters.net', 'www.searegisters.net']
 
 
 # Application definition
@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'Sea_registers.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'RestAnalytics',  # Nombre de la nueva base de datos
-        'USER': 'root',  # Usuario de MySQL
-        'PASSWORD': 'TomasteawitaProyecta2002!',  # Contraseña de MySQL
-        'HOST': 'db',  # Puede ser 'localhost' si MySQL está en el mismo servidor
-        'PORT': '3306',  # Puerto de MySQL
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'SeaRegistersDB',
+        'USER': 'CuevaTomarArg',
+        'PASSWORD': 'TomasteawitaProyecta2002!',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -121,7 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/home/root/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "app/static"),
@@ -132,7 +132,7 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/home/root/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'Index'
