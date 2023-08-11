@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = False
 
@@ -36,6 +36,9 @@ SECURE_HSTS_SECONDS = 3600  # Set this to an appropriate value
 
 # Force HTTPS
 SECURE_SSL_REDIRECT = True
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
 # Application definition
 
