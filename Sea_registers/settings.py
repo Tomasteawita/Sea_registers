@@ -121,7 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/home/root/static/'
+STATIC_URL = '/home/root/Sea_registers/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "app/static"),
@@ -132,7 +132,7 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/home/root/media/'
+MEDIA_URL = '/home/root/Sea_registers/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'Index'
