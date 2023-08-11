@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-sj$7z4kb5yjsdb+@9ml)dk+c=93s!scdsh=wj-%6!f*tai8w9^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['searegisters.net', 'www.searegisters.net']
+ALLOWED_HOSTS = ['62.72.24.205']
 
 
 # Application definition
