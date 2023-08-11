@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'Sea_registers.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'SeaRegistersDB',
-        'USER': 'CuevaTomarArg',
-        'PASSWORD': 'TomasteawitaProyecta2002!',
+        'NAME': 'searegistersdb',
+        'USER': 'tomasteawita',
+        'PASSWORD': '2373153644548521Santiago2002',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '',
     }
 }
 
