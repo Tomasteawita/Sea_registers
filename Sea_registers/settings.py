@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
 import os
 
@@ -28,7 +28,14 @@ ALLOWED_HOSTS = ['62.72.24.205', 'searegisters.net', 'www.searegisters.net']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+# Set secure headers
+
+SECURE_HSTS_SECONDS = 3600  # Set this to an appropriate value
+
+# Force HTTPS
+SECURE_SSL_REDIRECT = True
 
 # Application definition
 
@@ -73,6 +80,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Sea_registers.wsgi.application'
 
+if SECRET_KEY.startswith('django-insecure-'):
+    raise ImproperlyConfigured("You must set a secure SECRET_KEY value.")
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
