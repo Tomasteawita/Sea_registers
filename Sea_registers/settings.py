@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = False
 
 ALLOWED_HOSTS = ['62.72.24.205', 'searegisters.net', 'www.searegisters.net']
@@ -133,7 +133,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/home/root/Sea_registers/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/') 
+STATIC_URL = os.path.join(BASE_DIR, 'static/')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "app/static"),
@@ -144,8 +145,8 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/home/root/Sea_registers/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_REDIRECT_URL = 'Index'
 LOGIN_URL = 'Login'
