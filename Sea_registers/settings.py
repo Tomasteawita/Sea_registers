@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-from django.core.exceptions import ImproperlyConfigured
+
 from pathlib import Path
 import os
 
@@ -20,25 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-sj$7z4kb5yjsdb+@9ml)dk+c=93s!scdsh=wj-%6!f*tai8w9^'
 
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['62.72.24.205', 'searegisters.net', 'www.searegisters.net']
+ALLOWED_HOSTS = ['*']
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-# Set secure headers
-
-SECURE_HSTS_SECONDS = 3600  # Set this to an appropriate value
-
-# Force HTTPS
-SECURE_SSL_REDIRECT = True
-
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
 
 # Application definition
 
@@ -83,20 +72,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Sea_registers.wsgi.application'
 
-if SECRET_KEY.startswith('django-insecure-'):
-    raise ImproperlyConfigured("You must set a secure SECRET_KEY value.")
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'searegistersdb',
-        'USER': 'tomasteawita',
-        'PASSWORD': '2373153644548521Santiago2002',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'RestAnalytics',   # Nombre de la base de datos
+        'USER': 'root',   # Usuario de la base de datos
+        'PASSWORD': 'TomasteawitaProyecta2002!',  # Contraseña del usuario
+        'HOST': '172.7.7.1',  # Dirección IP del host de MySQL (puede ser la IP de la máquina host si estás ejecutando Docker en local)
+        'PORT': '3306',   # Puerto de MySQL
     }
 }
 
@@ -122,19 +109,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-
 LANGUAGE_CODE = 'en-us'
+
 TIME_ZONE = 'UTC'
+
 USE_I18N = True
-USE_L10N = True
+
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/') 
-STATIC_URL = os.path.join(BASE_DIR, 'static/')
+STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "app/static"),
@@ -145,11 +128,12 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = os.path.join(BASE_DIR, 'media/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'Index'
 LOGIN_URL = 'Login'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
