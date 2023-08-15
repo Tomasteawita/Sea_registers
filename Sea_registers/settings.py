@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-sj$7z4kb5yjsdb+@9ml)dk+c=93s!scdsh=wj-%6!f*tai8w9^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'Sea_registers.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'app/templates'],
+        'DIRS': [BASE_DIR,'app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,14 +76,25 @@ WSGI_APPLICATION = 'Sea_registers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+#DATABASES = {
+#   'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'postgres',
+#        'USER': 'postgres',
+#        'PASSWORD': 'postgres',
+#        'HOST': 'db',
+#        'PORT': 5432
+#    }
+#}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'RestAnalytics',   # Nombre de la base de datos
-        'USER': 'root',   # Usuario de la base de datos
-        'PASSWORD': 'TomasteawitaProyecta2002!',  # Contraseña del usuario
-        'HOST': '172.7.7.1',  # Dirección IP del host de MySQL (puede ser la IP de la máquina host si estás ejecutando Docker en local)
-        'PORT': '3306',   # Puerto de MySQL
+        'NAME': 'RestAnalytics',  # Reemplaza 'nombre_base_de_datos' por el nombre de tu base de datos
+        'USER': 'root',
+        'PASSWORD': 'TomasteawitaProyecta2002!',
+        'HOST': 'db',  # Nombre del servicio del contenedor de MySQL en docker-compose.yml
+        'PORT': '3306',  # Puerto del servicio del contenedor de MySQL en docker-compose.yml
     }
 }
 
@@ -117,6 +128,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
+
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (
@@ -133,7 +148,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'Index'
 LOGIN_URL = 'Login'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
