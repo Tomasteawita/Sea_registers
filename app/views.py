@@ -26,9 +26,11 @@ class CalculatorView(ListView, View, LoginRequiredMixin):
         register = Register(request)
         students = register.get_students()
         results_data = {}
+        available_days = register.get_available_days()
         
         total_assistance = sum(student['assistance'] for student in students.values())
         total_inassistance = sum(student['inassistance'] for student in students.values())
+        total_available_days = available_days * len(students)
         
         assistance_percentage = (total_assistance * 100) / (total_assistance + total_inassistance)
         inassistance_percentage = (total_inassistance * 100) / (total_assistance + total_inassistance)
@@ -37,6 +39,7 @@ class CalculatorView(ListView, View, LoginRequiredMixin):
         results_data["total_inassistance"] = total_inassistance
         results_data["assistance_percentage"] = assistance_percentage
         results_data["inassistance_percentage"] = inassistance_percentage
+        results_data["media_assistance"] = total_available_days / total_assistance
         
         return render(request, self.template_name, {'results_data': results_data})
 

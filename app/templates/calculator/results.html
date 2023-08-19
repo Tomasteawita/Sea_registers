@@ -4,10 +4,11 @@
             Resultados
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Porcentaje de asistencias total: {{ results_data.total_assistance }}</li>
-            <li class="list-group-item">Porcentaje de asistencias total: {{ results_data.total_inassistancee }}</li>
+            <li class="list-group-item">Asistencia total: {{ results_data.total_assistance }}</li>
+            <li class="list-group-item">Inasistencia total: {{ results_data.total_inassistance }}</li>
             <li class="list-group-item">Porcentaje de asistencias total: {{ results_data.assistance_percentage }}</li>
             <li class="list-group-item">Porcentaje de inasistencias total: {{ results_data.inassistance_percentage }}</li>
+            <li class="list-group-item">Asistencia media: {{ results_data.media_assistance }}</li>
         </ul>
     </div>
 {% endif %}
